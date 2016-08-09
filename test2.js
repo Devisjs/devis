@@ -5,9 +5,10 @@ devis.client({
   port: 3000
 });
 devis.act({
-    action: 'ping',
-    cmd:'play',
+    action: 'drive',
+    cmd:'car',
   }, function(err, result) {
+    if(err) console.log(err);
       console.log(result);
 });
 
