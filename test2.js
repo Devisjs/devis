@@ -1,12 +1,13 @@
-var devis=require("./devis");
+var devis=require("./devis")
 
-devis.client({
+.client({
   host: '127.0.0.1',
-  port: 3000
-});
+  port: 3000,
+  timeout:400
+})
 devis.act({
     action: 'drive',
-    cmd:'car',
+    cmd:'car'
   }, function(err, result) {
     if(err) console.log(err);
       console.log(result);

@@ -11,7 +11,7 @@ devis.add({
   action: 'drive',
   cmd:'car'
 }, function(args, done) {
-  
+
   done(null, { car: 'car' });
 });
 devis.add({
@@ -22,6 +22,6 @@ devis.add({
   done(null, { yeld: 'pong' });
 });
 devis.listen({
-  host: '127.0.0.1',
+  path: 'localhost',
   port: 3000
 });
