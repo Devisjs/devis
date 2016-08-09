@@ -22,6 +22,6 @@ devis.add({
   done(null, { yeld: 'pong' });
 });
 devis.listen({
-  path: 'localhost',
+  host: 'localhost',
   port: 3000
 });
