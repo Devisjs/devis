@@ -12,3 +12,10 @@ devis.act({
     if(err) console.log(err);
       console.log(result);
 });
+devis.act({
+    action: 'ping',
+    cmd:'game'
+  }, function(err, result) {
+    if(err) console.log(err);
+      console.log(result);
+});
