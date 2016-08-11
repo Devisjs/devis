@@ -4,7 +4,7 @@ var devis = require("./devis")
     host: '127.0.0.1',
     port: 3000,
     timeout: 400
-  })
+  }).setName("test2");
 devis.act({ action: 'ping', cmd: 'play' }, function (err, result) {
 
   console.log(result);
