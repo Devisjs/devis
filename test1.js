@@ -1,23 +1,27 @@
 var devis=require("./devis");
 
 devis.add({
-  action: 'ping',
+  action: 'test1',
   cmd:'game'
 }, function(args, done) {
   
-  done(null, { yeld: 'ping' });
+  done(null, { yeld: 'test1' });
 });
 devis.add({
-  action: 'drive',
+  action: 'test1',
   cmd:'car'
 }, function(args, done) {
     
-  done(null, { car: 'car' });
+  done(null, { car: 'lll' });
 });
 devis.add({
-  action: 'ping',
+  action: 'test1',
   cmd:'play'
 }, function(args, done) {
    
-  done(null, { yeld: 'pong' });
+  done(null, { yeld: 'kkk' });
+});
+devis.listen({
+  host: 'localhost',
+  port: 3030
 });
