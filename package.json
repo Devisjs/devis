@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "eraro": "^0.4.1",
-    "express": "^4.14.0",
     "jsonet": "^1.0.0",
     "lodash": "^4.14.1",
     "patrun": "^0.5.0",
