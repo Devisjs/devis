@@ -5,7 +5,7 @@ var devis = require("./devis")
   id:1
 }).setName('test2');
   
-devis.act({ clientId:1,action: 'ping', cmd: 'play' }, function (err, result) {
+devis.act({ clientId:1,action: 'pig', cmd: 'play' }, function (err, result) {
 
   console.log(result);
    
