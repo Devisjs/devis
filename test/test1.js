@@ -1,4 +1,4 @@
-var devis=require("./devis");
+var devis=require("../devis");
 devis.use("./test")
 .listen({
   host:'127.0.0.1',
