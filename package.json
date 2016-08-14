@@ -9,6 +9,7 @@
   "author": "ismail reida",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.1.2",
     "eraro": "^0.4.1",
     "jsonet": "^1.0.0",
     "jsonpack": "^1.1.5",
