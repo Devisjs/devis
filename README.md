@@ -183,7 +183,7 @@ devis.use("./core")
   port:3030
 })
 ```
-![alt tag](https://lh6.googleusercontent.com/_f0JRA1Qp-psP3PcxjjzwwcywzyODjUo1hhEUKHmM81WAUNUHBpdq5fKIzqGIa83rmeudW0BDa-DOKE=w800)
+![alt tag](https://scontent-mrs1-1.xx.fbcdn.net/v/t1.0-9/14064278_10207296496633095_6807725511734547690_n.jpg?oh=eff0d8e8ec9bac59b82d0e20af45b6d8&oe=584F240F)
 
 The `listen` method starts a web server that listens for JSON messages. When these arrive, they are submitted to the local Devis instance, and executed as actions in the normal way. The result is then returned to the client. You can use Http,Tcp,Unix Socket or Named Pipes.
 
@@ -207,7 +207,7 @@ devis.act({clientId:1,action: 'game', cmd: 'pause' }, function (err2, result2) {
     console.log(result2);
 });
 ```
-![alt tag](https://lh3.googleusercontent.com/gzC7c0zD_BNiPtK4tXaBJDTKl1j-hgFIL3bs3wDcIh4BI8ajdtHCdTMP2FL3Vr4mqMGooCV1DjfobUM=w800)
+![alt tag](https://scontent-mrs1-1.xx.fbcdn.net/v/t1.0-9/14063796_10207296496553093_5124476474447040595_n.jpg?oh=d8374fc6176cfd662fa84dbddbe187e9&oe=58486A3C)
 
 On the client-side, calling `devis.client()` means that Devis will send any actions it cannot match locally out over the network. In this case, the configuration server will match the `action: 'game', cmd: 'play'` and `action: 'game', cmd: 'pause'` pattern and return the configuration data.
 
