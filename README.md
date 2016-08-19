@@ -20,7 +20,7 @@ To install, simply use npm.
 npm install devis
 ```
 
-## Examples:
+## Example:
 
 -**model.js**:
 
