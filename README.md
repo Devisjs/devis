@@ -20,7 +20,7 @@ To install, simply use npm.
 npm install devis
 ```
 
-## Example:
+### Example:
 
 -**model.js**:
 
@@ -148,7 +148,7 @@ The `devis.act` method accepts an object, and runs the command, if any, that mat
 
 This is a _very convenient way of combining a pattern and parameter data_.
 
-### Use network
+# Use network
 
 Devis makes this really easy. Let's put configuration out on the network into its own process:
 
@@ -211,6 +211,20 @@ devis.act({clientId:1,action: 'game', cmd: 'pause' }, function (err2, result2) {
 
 On the client-side, calling `devis.client()` means that Devis will send any actions it cannot match locally out over the network. In this case, the configuration server will match the `action: 'game', cmd: 'play'` and `action: 'game', cmd: 'pause'` pattern and return the configuration data.
 
+###Other examples:
+we will take the previous example and add a Unix socket (UNIX or GNU/LINUX) and a Named Pipes (WINDOWS) instead of HTTP or TCP:
 
-
-
+-**Unix socket**:
+```javascript
+//server side:
+devis.listen({path:'/tmp/mysoscket.sock'});
+//Client side:
+devis.client({id:1, path:'/tmp/mysoscket.sock'}).setName("client");
+```
+-**Named pipes**:
+```javascript
+//Server side:
+devis.listen({path:'\\\\\.\\pipe\\mynamedpipe'});
+//Client side:
+devis.client({id:1, path:'\\\\\.\\pipe\\mynamedpipe'}).setName("client");
+```
