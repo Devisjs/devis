@@ -1,9 +1,4 @@
-var devis=require("../devis")
-.client({
-  host:'127.0.0.1',
-  port:3030,
-  id:2
-})
+let devis=require("../devis")
 .client({
   host:'127.0.0.1',
   port:3030,
@@ -30,4 +25,3 @@ devis.act({clientId:1,action: 'game', cmd: 'pause' }, function (err2, result2) {
 
   console.log(result2);
 })
-.log();
