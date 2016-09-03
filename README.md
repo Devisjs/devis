@@ -1,4 +1,4 @@
-<img src="http://gdurl.com/PeQp" width="350"/>
+<img src="http://gdurl.com/PeQp" width="550"/>
 >A microservices framework for Node.js
 
 
