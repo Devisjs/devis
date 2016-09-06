@@ -35,7 +35,8 @@ CFLAGS_CC_Debug := \
 	-fno-rtti \
 	-fno-exceptions \
 	-fno-threadsafe-statics \
-	-fno-strict-aliasing
+	-std=c++11 \
+	-stdlib=libc++
 
 # Flags passed to only ObjC files.
 CFLAGS_OBJC_Debug :=
@@ -80,7 +81,8 @@ CFLAGS_CC_Release := \
 	-fno-rtti \
 	-fno-exceptions \
 	-fno-threadsafe-statics \
-	-fno-strict-aliasing
+	-std=c++11 \
+	-stdlib=libc++
 
 # Flags passed to only ObjC files.
 CFLAGS_OBJC_Release :=
@@ -125,6 +127,7 @@ $(obj).$(TOOLSET)/$(TARGET)/%.o: $(obj)/%.cpp FORCE_DO_CMD
 # End of this set of suffix rules
 ### Rules for final target.
 LDFLAGS_Debug := \
+	-stdlib=libc++ \
 	-undefined dynamic_lookup \
 	-Wl,-no_pie \
 	-Wl,-search_paths_first \
@@ -133,11 +136,13 @@ LDFLAGS_Debug := \
 	-L$(builddir)
 
 LIBTOOLFLAGS_Debug := \
+	-stdlib=libc++ \
 	-undefined dynamic_lookup \
 	-Wl,-no_pie \
 	-Wl,-search_paths_first
 
 LDFLAGS_Release := \
+	-stdlib=libc++ \
 	-undefined dynamic_lookup \
 	-Wl,-no_pie \
 	-Wl,-search_paths_first \
@@ -146,6 +151,7 @@ LDFLAGS_Release := \
 	-L$(builddir)
 
 LIBTOOLFLAGS_Release := \
+	-stdlib=libc++ \
 	-undefined dynamic_lookup \
 	-Wl,-no_pie \
 	-Wl,-search_paths_first

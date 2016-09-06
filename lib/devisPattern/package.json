@@ -1,0 +1,15 @@
+{
+  "name": "devis",
+  "version": "0.1.0",
+  "description": "microservice build framework ",
+  "main": "devis.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ismail reida",
+  "license": "ISC",
+  "dependencies": {
+    "sort-json": "^1.3.0"
+  }
+}
+  
