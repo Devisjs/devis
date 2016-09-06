@@ -1,0 +1,12 @@
+{
+    "targets": [
+                {
+                "target_name": "addon",
+                "sources": [
+                            "addon.cpp",
+                            "devisPattern.cpp"
+                            ],
+"cflags" : [ "-std=c++1", "-stdlib=libc++" ]
+                }
+                ]
+}
