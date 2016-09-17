@@ -216,6 +216,8 @@ devis.act({clientId:1,action: 'game', cmd: 'pause' }, function (result2) {
 
 On the client-side, calling `devis.client()` means that Devis will send any actions it cannot match locally out over the network. In this case, the configuration server will match the `action: 'game', cmd: 'play'` and `action: 'game', cmd: 'pause'` pattern and return the configuration data.
 
+It's imperative to define a unique identifier for each Microservice consumed as client and add the ClientId when calling each remote propertie
+
 ###Other examples:
 we will take the previous example and add a Unix socket (UNIX or GNU/LINUX) and a Named Pipes (WINDOWS) instead of HTTP or TCP:
 
