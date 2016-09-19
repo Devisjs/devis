@@ -15,8 +15,10 @@ Devis provides:
 
 Use this module to define commands that work by taking in some JSON, and, optionally, returning some JSON. The command to run is selected by pattern-matching on the the input JSON. There are built-in and optional sets of commands that help you build Minimum Viable Products: data storage, user management, distributed logic, caching, logging, etc. And you can define your own product by breaking it into a set of commands - "stuff that happens". That's pretty much it.
 
-If you're using this module, and need help, you can post a [github issue][issue].
+**Remember** that Devis is based on devispattern that is an addon written in c ++ it's necessary, before using Devis to install:
+* python v2.7, and make a c ++ compiler like gcc under **unix / linux-gnu** and install more xcode with command line tools if you are under **mac os**
 
+* on **Windows**: Install all the required tools and configurations using Microsoft's windows-build-tools using ```npm install --global --production windows-build-tools``` from an elevated PowerShell or CMD.exe (run as Administrator).
 ## Install
 
 To install, simply use npm.
