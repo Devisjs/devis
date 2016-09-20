@@ -31,7 +31,7 @@
   "license": "MIT",
   "dependencies": {
     "colors": "^1.1.2",
-    "devisPattern": "^0.1.0",
+    "devisPattern": "^0.2.1",
     "eraro": "^0.4.1",
     "jsonpack": "^1.1.5",
     "lodash": "^4.15.0",
