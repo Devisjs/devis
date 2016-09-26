@@ -15,7 +15,7 @@ Devis provides:
 
 Use this module to define commands that work by taking in some JSON, and, optionally, returning some JSON. The command to run is selected by pattern-matching on the the input JSON. There are built-in and optional sets of commands that help you build Minimum Viable Products: data storage, user management, distributed logic, caching, logging, etc. And you can define your own product by breaking it into a set of commands - "stuff that happens". That's pretty much it.
 
-**Remember** that Devis is based on devispattern that is an addon written in c ++. 
+**Remember** that Devis is based on devispattern that is an addon written in c ++.
 
 It's necessary, before using Devis to install:
 * python v2.7, and make a c ++ compiler like gcc under **unix / linux-gnu** and install more xcode with command line tools if you are under **mac os**
@@ -38,7 +38,7 @@ npm install devis
 let devis = require("devis");
 let options = [];
 
-devis.add({
+devis.define({
     role: "model",
     action: "initialize"
 }, function(args, done) {
@@ -48,23 +48,23 @@ devis.add({
     done("initialization complete");
 });
 
-devis.add({
+devis.define({
         role: "model",
         action: "GET"
     },
     GET);
 
-devis.add({
+devis.define({
     role: "model",
     action: "POST"
 }, POST);
 
-devis.add({
+devis.define({
     role: "model",
     action: "PUT"
 }, PUT);
 
-devis.add({
+devis.define({
     role: "model",
     action: "DELETE"
 }, DELETE);
@@ -144,16 +144,16 @@ module.exports = devis;
 let devis=require("devis");
 let data={firstName:"foo",lastName:"bar"};
 devis.usePath('wakanda/model');
-devis.act({role:"model",action:"initialize"},{dataClass:"Employee"},function(res){console.log(res)});
-devis.act({role:"model",action:"POST"},{Add:data},function(res){console.log(res)});
-devis.act({role:"model",action:"GET"},{func:"first"},function(res){console.log(res)});
+devis.fetch({role:"model",action:"initialize"},{dataClass:"Employee"},function(res){console.log(res)});
+devis.fetch({role:"model",action:"POST"},{Add:data},function(res){console.log(res)});
+devis.fetch({role:"model",action:"GET"},{func:"first"},function(res){console.log(res)});
 ```
 
 In this code,
 
-The `devis.add` method adds a new pattern, and the function to execute whenever that pattern occurs.
+The `devis.define` method adds a new pattern, and the function to execute whenever that pattern occurs.
 
-The `devis.act` method accepts an object, and runs the command, if any, that matches.
+The `devis.fetch` method accepts an object, and runs the command, if any, that matches.
 
 This is a _very convenient way of combining a pattern and parameter data_.
 
@@ -166,14 +166,14 @@ Devis makes this really easy. Let's put configuration out on the network into it
 ```javascript
 var devis=require("devis");
 
-devis.add({
+devis.define({
   action: 'game',
   cmd:'play'
 }, function(args,done) {
 
   done({ result: 'play' });
 });
-devis.add({
+devis.define({
   action: 'game',
   cmd:'pause'
 }, function(args, done) {
@@ -208,11 +208,11 @@ var devis=require("devis")
   id:1
 }).setName('client');
 
-devis.act({ clientId:1,action: 'game', cmd: 'play' }, function (result) {
+devis.fetch({ clientId:1,action: 'game', cmd: 'play' }, function (result) {
     console.log(result);
 });
 
-devis.act({clientId:1,action: 'game', cmd: 'pause' }, function (result2) {
+devis.fetch({clientId:1,action: 'game', cmd: 'pause' }, function (result2) {
     console.log(result2);
 });
 ```
