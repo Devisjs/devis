@@ -5,7 +5,7 @@
 # Devis
 <p align="center">
   <a href="https://circleci.com/gh/Devisjs/devis/tree/master"><img src="https://img.shields.io/circleci/project/Devisjs/devis/master.svg" alt="Build Status"></a>
- 
+
   <a href="https://www.npmjs.com/package/devis"><img src="https://img.shields.io/npm/dt/devis.svg" alt="Downloads"></a>
   <a href="https://www.npmjs.com/package/devis"><img src="https://img.shields.io/npm/v/devis.svg" alt="Version"></a>
   <a href="https://www.npmjs.com/package/devis"><img src="https://img.shields.io/npm/l/devis.svg" alt="License"></a>
@@ -46,7 +46,7 @@ npm install devis
 let devis = require("devis");
 let options = [];
 
-devis.define({
+devis.add({
     role: "model",
     action: "initialize"
 }, function(args, done) {
@@ -56,23 +56,23 @@ devis.define({
     done("initialization complete");
 });
 
-devis.define({
+devis.add({
         role: "model",
         action: "GET"
     },
     GET);
 
-devis.define({
+devis.add({
     role: "model",
     action: "POST"
 }, POST);
 
-devis.define({
+devis.add({
     role: "model",
     action: "PUT"
 }, PUT);
 
-devis.define({
+devis.add({
     role: "model",
     action: "DELETE"
 }, DELETE);
@@ -152,16 +152,16 @@ module.exports = devis;
 let devis=require("devis");
 let data={firstName:"foo",lastName:"bar"};
 devis.usePath('wakanda/model');
-devis.fetch({role:"model",action:"initialize"},{dataClass:"Employee"},function(res){console.log(res)});
-devis.fetch({role:"model",action:"POST"},{Add:data},function(res){console.log(res)});
-devis.fetch({role:"model",action:"GET"},{func:"first"},function(res){console.log(res)});
+devis.act({role:"model",action:"initialize"},{dataClass:"Employee"},function(res){console.log(res)});
+devis.act({role:"model",action:"POST"},{Add:data},function(res){console.log(res)});
+devis.act({role:"model",action:"GET"},{func:"first"},function(res){console.log(res)});
 ```
 
 In this code,
 
-The `devis.define` method adds a new pattern, and the function to execute whenever that pattern occurs.
+The `devis.add` method adds a new pattern, and the function to execute whenever that pattern occurs.
 
-The `devis.fetch` method accepts an object, and runs the command, if any, that matches.
+The `devis.act` method accepts an object, and runs the command, if any, that matches.
 
 This is a _very convenient way of combining a pattern and parameter data_.
 
@@ -174,14 +174,14 @@ Devis makes this really easy. Let's put configuration out on the network into it
 ```javascript
 var devis=require("devis");
 
-devis.define({
+devis.add({
   action: 'game',
   cmd:'play'
 }, function(args,done) {
 
   done({ result: 'play' });
 });
-devis.define({
+devis.add({
   action: 'game',
   cmd:'pause'
 }, function(args, done) {
@@ -216,11 +216,11 @@ var devis=require("devis")
   id:1
 }).setName('client');
 
-devis.fetch({ clientId:1,action: 'game', cmd: 'play' }, function (result) {
+devis.act({ clientId:1,action: 'game', cmd: 'play' }, function (result) {
     console.log(result);
 });
 
-devis.fetch({clientId:1,action: 'game', cmd: 'pause' }, function (result2) {
+devis.act({clientId:1,action: 'game', cmd: 'pause' }, function (result2) {
     console.log(result2);
 });
 ```

@@ -1,6 +1,5 @@
 const devis=require("../devis");
 devis.use("./core")
-    console.log(devis)
 .listen({
   host:'127.0.0.1',
   port:3030
