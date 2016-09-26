@@ -1,21 +1,21 @@
 'use strict';
 var devis=require("../devis");
 
-devis.define({
+devis.add({
   action: 'game',
   cmd:'play'
 }, function(args, done) {
 
   done({ result: 'play' });
 });
-devis.define({
+devis.add({
   action: 'game',
   cmd:'pause'
 }, function(args, done) {
 
   done({ result: 'pause' });
 });
-devis.define({
+devis.add({
   action: 'gamer',
   cmd:'play'
 }, function(args, done) {
