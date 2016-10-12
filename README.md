@@ -1,8 +1,8 @@
-<img src="https://d13yacurqjgara.cloudfront.net/users/506824/screenshots/1824942/d.gif" width="550"/>
+# Devis
+<img src="https://d13yacurqjgara.cloudfront.net/users/506824/screenshots/1824942/d.gif" width="250" style:"margin-left:100%"/>
 >A microservices framework for Node.js
 
 
-# Devis
 <p align="center">
   <a href="https://circleci.com/gh/Devisjs/devis/tree/master"><img src="https://img.shields.io/circleci/project/Devisjs/devis/master.svg" alt="Build Status"></a>
 
