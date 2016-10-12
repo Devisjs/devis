@@ -1,5 +1,5 @@
 # Devis
-<img src="https://d13yacurqjgara.cloudfront.net/users/506824/screenshots/1824942/d.gif" width="250" style:"margin-left:100%"/>
+<img src="https://d13yacurqjgara.cloudfront.net/users/506824/screenshots/1824942/d.gif" width="250"/>
 >A microservices framework for Node.js
 
 
