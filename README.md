@@ -44,108 +44,26 @@ npm install devis
 
 ### Example:
 
--**model.js**:
+-**plugin.js**:
 
 ```javascript
 
-let devis = require("devis");
-let options = [];
+var devis=require("devis");
 
 devis.add({
-    role: "model",
-    action: "initialize"
-}, function(args, done) {
-    for (var attribute in args)
-        options[attribute] = args[attribute];
+  action: 'game',
+  cmd:'play'
+}, function(args,done) {
 
-    done("initialization complete");
+  done(null,{ result: 'play' });
 });
-
 devis.add({
-        role: "model",
-        action: "GET"
-    },
-    GET);
+  action: 'game',
+  cmd:'pause'
+}, function(args, done) {
 
-devis.add({
-    role: "model",
-    action: "POST"
-}, POST);
-
-devis.add({
-    role: "model",
-    action: "PUT"
-}, PUT);
-
-devis.add({
-    role: "model",
-    action: "DELETE"
-}, DELETE);
-
-function DELETE(args, done) {
-    let fin = false;
-    let dataClass = options.dataClass;
-    let EntityToRemove = ds[dataClass](args.ID)
-    if (EntityToRemove) {
-        EntityToRemove.remove();
-        fin = true;
-    }
-    done(fin);
-}
-
-function PUT(args, done) {
-    let fin = false;
-    let dataClass = options.dataClass;
-
-    let EntityToUpdate = ds[dataClass](args.ID) //args.ID={__KEY:10} or ={ID:10}
-    if (EntityToUpdate) {
-        try {
-            for (var attribute in args.Update) {
-                EntityToUpdate[attribute] = args.Update[attribute];
-            }
-            EntityToUpdate.save();
-            fin = true;
-        } catch (e) {
-            fin = e;
-        }
-    }
-    done(fin);
-}
-
-function POST(args, done) {
-    let fin;
-    let dataClass = options.dataClass;
-
-    if (args.Add) { //add new Entity
-        var newEntity = ds[dataClass].createEntity();
-
-        try {
-
-            for (var attribute in args.Add) {
-                newEntity[attribute] = args.Add[attribute];
-            }
-            newEntity.save();
-            fin = true;
-        } catch (e) {
-            fin = e;
-        }
-        done(fin);
-    }
-}
-
-function GET(args, done) {
-    let fin;
-    let dataClass = options.dataClass;
-    let func = args.func;
-    if (args.data) {
-        let searchData;
-
-        fin = ds[dataClass][func](args.data);
-
-    } else
-        fin = ds[dataClass][func]();
-    done(fin);
-}
+  done(null,{ result: 'pause' });
+});
 
 
 module.exports = devis;
@@ -155,11 +73,16 @@ module.exports = devis;
 
 ```javascript
 let devis=require("devis");
-let data={firstName:"foo",lastName:"bar"};
-devis.usePath('wakanda/model');
-devis.act({role:"model",action:"initialize"},{dataClass:"Employee"},function(res){console.log(res)});
-devis.act({role:"model",action:"POST"},{Add:data},function(res){console.log(res)});
-devis.act({role:"model",action:"GET"},{func:"first"},function(res){console.log(res)});
+devis.act({ action: 'game', cmd: 'pause' }, function (err, result) {
+  if (err) throw err;
+  console.log(result);
+});
+
+
+devis.act({action: 'gamer', cmd: 'play' }, function (err, result) {
+  if (err) throw err;
+  console.log(result);
+})
 ```
 
 In this code,
@@ -184,14 +107,14 @@ devis.add({
   cmd:'play'
 }, function(args,done) {
 
-  done({ result: 'play' });
+  done(null,{ result: 'play' });
 });
 devis.add({
   action: 'game',
   cmd:'pause'
 }, function(args, done) {
 
-  done({ result: 'pause' });
+  done(null,{ result: 'pause' });
 });
 ```
 
@@ -221,12 +144,14 @@ var devis=require("devis")
   id:1
 }).setName('client');
 
-devis.act({ clientId:1,action: 'game', cmd: 'play' }, function (result) {
+devis.act({ clientId:1,action: 'game', cmd: 'play' }, function (err,result) {
+    if (err) throw err;
     console.log(result);
 });
 
-devis.act({clientId:1,action: 'game', cmd: 'pause' }, function (result2) {
-    console.log(result2);
+devis.act({clientId:1,action: 'game', cmd: 'pause' }, function (err,result) {
+    if (err) throw err;
+    console.log(result);
 });
 ```
 ![alt tag](https://scontent-mrs1-1.xx.fbcdn.net/v/t1.0-9/14063796_10207296496553093_5124476474447040595_n.jpg?oh=d8374fc6176cfd662fa84dbddbe187e9&oe=58486A3C)
