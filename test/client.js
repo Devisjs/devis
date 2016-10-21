@@ -7,13 +7,13 @@ const devis = require("../devis")
 devis.add({ test: "test", action: "done" }, (args, done) => {
   done(null, "test done");
 })
-devis.act({ clientId: 1, action: 'game', cmd: 'play' }, function (err, result) {
+devis.act({ clientId: 1, action: 'game', cmd: 'play' },{name:"foo"}, function (err, result) {
   if (err) throw err;
   console.log(result);
 
 });
 
-devis.act({ clientId: 1, action: 'game', cmd: 'pause' }, function (err, result2) {
+devis.act({ clientId: 1, action: 'game', cmd: 'pause' },{name:"foo"}, function (err, result2) {
   if (err) throw err;
 
   console.log(result2);

@@ -55,14 +55,14 @@ devis.add({
   cmd:'play'
 }, function(args,done) {
 
-  done(null,{ result: 'play' });
+  done(null,args.name+" is playing game now");
 });
 devis.add({
   action: 'game',
   cmd:'pause'
 }, function(args, done) {
 
-  done(null,{ result: 'pause' });
+  done(null,args.name+" pause the game");
 });
 
 
@@ -73,13 +73,13 @@ module.exports = devis;
 
 ```javascript
 let devis=require("devis");
-devis.act({ action: 'game', cmd: 'pause' }, function (err, result) {
+devis.act({ action: 'game', cmd: 'pause' },{name:"foo"}, function (err, result) {
   if (err) throw err;
   console.log(result);
 });
 
 
-devis.act({action: 'gamer', cmd: 'play' }, function (err, result) {
+devis.act({action: 'gamer', cmd: 'play' },{name:"foo"}, function (err, result) {
   if (err) throw err;
   console.log(result);
 })
