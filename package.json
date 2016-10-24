@@ -1,5 +1,5 @@
 {
-  "name": "devis",
+  "name": "devis", 
   "version": "1.0.4",
   "description": "A microservices framework for Node.js",
   "main": "devis.js",
