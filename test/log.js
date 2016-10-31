@@ -18,5 +18,5 @@ if (process.argv[2] == "connect") {
 
 } else devis.use(process.argv[2]);
 
-devis.setName("devis");
+devis.setName("devis"); 
 devis.log();
