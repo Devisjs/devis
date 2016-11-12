@@ -5,7 +5,7 @@ const devis = require("../devis")
     id: 1
   }).setName('test2');
 devis.add({ test: "test", action: "done" }, (args, done) => {
-  done(null, "test done");
+  done(null, "test complete!");
 })
 devis.act({ clientId: 1, action: 'game', cmd: 'play' },{name:"foo"}, function (err, result) {
   if (err) throw err;
