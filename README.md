@@ -42,7 +42,7 @@ It's necessary, before using Devis to install:
     - **Unix/linux-gnu**:
         - Clang or GCC
         - Ninja or Make (Ninja will be picked if both present)
-        - Install more xcode with command line tools if you are under **mac os**
+        - Xcode with command line tools if you are under **mac os**
         
 ## Install
 
