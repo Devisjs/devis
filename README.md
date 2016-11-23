@@ -34,7 +34,7 @@ Use this module to define commands that work by taking in some JSON, and, option
 
 
 It's necessary, before using Devis to install:
-- [CMake](http://www.cmake.org/download/)(*.msi version for windows: You must check the addition of the path for all users)
+- [CMake](http://www.cmake.org/download/)(*.msi version for windows: You must check the addition of the path for all users, And restart your computer after installation)
 - A proper C/C++ compiler toolchain of the given platform
     - **Windows**:
         - [Visual C++ Build Tools](http://landinghub.visualstudio.com/visual-cpp-build-tools)
