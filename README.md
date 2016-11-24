@@ -11,7 +11,7 @@
   <a href="https://www.npmjs.com/package/devis"><img src="https://img.shields.io/npm/dt/devis.svg" alt="Downloads"></a>
   <a href="https://www.npmjs.com/package/devis"><img src="https://img.shields.io/npm/v/devis.svg" alt="Version"></a>
   <a href="https://www.npmjs.com/package/devis"><img src="https://img.shields.io/npm/l/devis.svg" alt="License"></a>
-  <a href="https://www.bithound.io/github/Devisjs/devis/master/dependencies/npm"><img src="https://www.bithound.io/github/Devisjs/devis/badges/dependencies.svg" alt="bitHound Dependencies"></a>
+<a href="https://travis-ci.org/Devisjs/devis.svg?branch=master"><img src="https://travis-ci.org/Devisjs/devis.svg?branch=master" alt=""></a>
   <a href="https://www.bithound.io/github/Devisjs/devis"><img src="https://www.bithound.io/github/Devisjs/devis/badges/score.svg" alt="bitHound Overall Score"></a>
   <br>
   
