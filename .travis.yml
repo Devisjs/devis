@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - "6"
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - george-edison55-precise-backports
+    packages:
+      - g++-4.8
+      - libxtst-dev
+      - cmake
+      - cmake-data
+      - x11-apps
+install:
+  - npm install
