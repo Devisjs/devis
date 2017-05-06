@@ -1,4 +1,5 @@
 /* Copyright (c) 2017 Devis, MIT License */
+'use strict';
 
 const chai = require("chai"),
     cmd = require('node-cmd'),
