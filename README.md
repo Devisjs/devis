@@ -1,14 +1,11 @@
 # Devis       
 
 
-<img src="https://8zzp5w.dm2302.livefilestore.com/y3mfmEBf29sGXflOWN_Hk0yFy3debRCUbdQiTEuttJh0bAg3axpzhmJspRFdOnaLwKylPPYewtA8M-z1_RO2YgjBkOU75s18kvWdqPeT5z7wXXdjKBu3tPeKu4L_FFGn_R5UKIH6LspIBhy-JMYBVT6vT0GusOzoPkbBdXGxN0rnNk?width=600&height=600&cropmode=none" href="http://devisjs.surge.sh" width="250" />
+<img  src="https://8zzp5w.dm2302.livefilestore.com/y3mfmEBf29sGXflOWN_Hk0yFy3debRCUbdQiTEuttJh0bAg3axpzhmJspRFdOnaLwKylPPYewtA8M-z1_RO2YgjBkOU75s18kvWdqPeT5z7wXXdjKBu3tPeKu4L_FFGn_R5UKIH6LspIBhy-JMYBVT6vT0GusOzoPkbBdXGxN0rnNk?width=600&height=600&cropmode=none" href="http://devisjs.surge.sh" width="250" />
 
->A microservices framework for Node.js http://devisjs.surge.sh
-
+>A microservices framework for Node.js
 
 <p align="center">
-  <a href="https://circleci.com/gh/Devisjs/devis/tree/master"><img src="https://img.shields.io/circleci/project/Devisjs/devis/master.svg" alt="Build Status"></a>
-  
   <a href="https://www.npmjs.com/package/devis"><img src="https://img.shields.io/npm/dt/devis.svg" alt="Downloads"></a>
   <a href="https://www.npmjs.com/package/devis"><img src="https://img.shields.io/npm/v/devis.svg" alt="Version"></a>
   <a href="https://www.npmjs.com/package/devis"><img src="https://img.shields.io/npm/l/devis.svg" alt="License"></a>
