@@ -185,3 +185,32 @@ devis.listen({path:'\\\\\.\\pipe\\mynamedpipe'});
 //Client side:
 devis.client({id:1, path:'\\\\\.\\pipe\\mynamedpipe'}).setName("client");
 ```
+
+# Running a PM2 instance with Devis
+<div align="center">
+  <a href="http://pm2.keymetrics.io">
+    <img width=710px src="https://github.com/unitech/pm2/raw/master/pres/pm2.20d3ef.png">
+  </a>
+
+<br/>
+</div>
+PM2 is a production process manager for Node.js applications with a built-in load balancer. It allows you to keep applications alive forever, to reload them without downtime and to facilitate common system admin tasks.
+
+-**Install pm2**:
+```bash
+$ npm install pm2 -g
+```
+
+-**Start the microservice with pm2**:
+Let's go back to the previous example, Instead of running the command line: 
+```bash
+$ node server.js 
+```
+
+We will run the following command:
+```bash
+$ pm2 start app.js
+```
+**Click on the picture for more information**<a href="https://github.com/Unitech/pm2">
+  <img width=70px src="https://github.com/unitech/pm2/raw/master/pres/pm2.20d3ef.png">
+</a>
