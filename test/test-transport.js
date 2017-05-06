@@ -82,7 +82,7 @@ describe("Devis Transport Class", function() {
     });
     describe("#sendMessage", function() {
         it("should send arguments to server", function() {
-            args = {
+            let args = {
                 name: "Client0"
             };
             args.ident = ++devisClient.ident;
@@ -94,6 +94,9 @@ describe("Devis Transport Class", function() {
             }, args);
         });
         it("should wait to get data from a past send ", function() {
+            let args = {
+                name: "Client0"
+            };
             args.ident = ++devisClient.ident;
             args.devisInstanceName = devisClient.name;
             devisClient.clients[0].sendMessage({
@@ -113,7 +116,7 @@ describe("Devis Transport Class", function() {
     describe("#sendMessage and #Close", function() {
         it("should reconnect if the connection has been closed and send arguments to server", function() {
             devisClient.clients[0].close();
-            args = {
+            let args = {
                 name: "Client0"
             };
             args.ident = ++devisClient.ident;
