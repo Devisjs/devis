@@ -1,3 +1,4 @@
+"use strict";
 let devis = require("../devis");
 
 if (process.argv[2] == "connect") {
@@ -18,5 +19,5 @@ if (process.argv[2] == "connect") {
 
 } else devis.use(process.argv[2]);
 
-devis.setName("devis"); 
+devis.setName("devis");
 devis.log();

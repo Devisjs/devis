@@ -1,40 +1,48 @@
 {
   "name": "devis",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "A microservices framework for Node.js",
   "main": "devis.js",
   "scripts": {
-    "test": "node test/test"
+    "test": "mocha ./test",
+    "coverage": "istanbul cover _mocha ./test -x test-*.js",
+    "showCoverage": "open coverage/lcov-report/index.html"
   },
   "author": "ismail reida",
   "keywords": [
-  "micro",
-  "service",
-  "microservice",
-  "micro-service",
-  "microservices",
-  "micro-services",
-  "services",
-  "micro services",
-  "micro service",
-  "framework",
-  "minimum",
-  "viable",
-  "product",
-  "toolkit",
-  "startup"
-],
-"repository": {
+    "micro",
+    "service",
+    "microservice",
+    "micro-service",
+    "microservices",
+    "micro-services",
+    "services",
+    "micro services",
+    "micro service",
+    "framework",
+    "minimum",
+    "viable",
+    "product",
+    "toolkit",
+    "startup"
+  ],
+  "repository": {
     "type": "git",
     "url": "https://github.com/Devisjs/devis.git"
   },
   "license": "MIT",
   "dependencies": {
     "colors": "^1.1.2",
-    "devisPattern": "^1.0.1",
+    "devisPattern": "^1.1.0",
     "eraro": "^0.4.1",
     "jsonpack": "^1.1.5",
     "lodash": "^4.15.0",
     "use-plugin": "^0.3.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "node-cmd": "^2.0.0"
   }
 }

@@ -1,15 +1,9 @@
 'use strict';
 var devis = require("../devis");
 
-devis.add({
-    action: 'game',
-    cmd: 'play'
-}, function(args, done) {
 
-    done(null, args.name + " is playing game now");
-});
 devis.add({
-    action: 'game',
+    action: 'gamer',
     cmd: 'pause'
 }, function(args, done) {
 
@@ -25,3 +19,5 @@ devis.add({
         result: args.name
     });
 })
+
+module.exports=devis;

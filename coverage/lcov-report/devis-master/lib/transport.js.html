@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for devis-master/lib/transport.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">devis-master/lib/</a> transport.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">89.71% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>61/68</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">80% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>8/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">88.89% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>8/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">91.04% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>61/67</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* Copyright (c) 2016 Devis, MIT License */
+'use strict';
+&nbsp;
+const jsonet = require("./jsonet/index");
+const jsonpack = require("jsonpack");
+const EventEmitter = require('events');
+const colors = require("colors/safe");
+&nbsp;
+class Transport extends EventEmitter {
+&nbsp;
+    constructor() {
+        super();
+        this.data = "";
+        this.server;
+        this.callback = [];
+        this.opt;
+        this.send = false;
+        this.socket = jsonet.createSocket();
+        this.state = 'disconnected';
+&nbsp;
+        this.socket.on('close', () =&gt; {
+            this.state = 'disconnected';
+            console.log(colors.gray("disconnected"));
+        });
+&nbsp;
+        this.socket.on('error', (ex) =&gt; {
+<span class="cstat-no" title="statement not covered" >            this.state = 'disconnected';</span>
+<span class="cstat-no" title="statement not covered" >            console.log(colors.red(ex));</span>
+        });
+&nbsp;
+        this.socket.on('message', (data) =&gt; {
+            data = jsonpack.unpack(data);
+            if (data.server) {
+                this.emit("dataServer", {
+                    data: data.server
+                });
+            }
+            this.callback[data.ident] = [];
+            this.callback[data.ident]["result"] = data.result;
+            this.callback[data.ident]["error"] = data.err;
+&nbsp;
+&nbsp;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (data.success === false) <span class="cstat-no" title="statement not covered" >this.callback[data.ident][data.name] = null;</span>
+&nbsp;
+            this.emit(data.ident + '' + data.name, {
+                data: this.callback[data.ident]["result"],
+                err: this.callback[data.ident]["error"],
+                id: data.ident
+            });
+            this.send = false;
+            this.emit(1);
+        });
+    }
+&nbsp;
+    getCallback(id, name, call) {
+        this.once(id + '' + name, (args) =&gt; {
+            this.send = false;
+            call(args.err, args.data, args.id);
+        });
+    }
+&nbsp;
+    listen(opt, server) {
+        this.server = jsonet.createServer((connection) =&gt; {
+                connection.write(jsonpack.pack({
+                    server: server.path.list()
+                }));
+                connection.on('message', (args) =&gt; {
+                    args = jsonpack.unpack(args);
+                    server.act(args[0], args[1], function(err, result) {
+                        let res = {
+                            err: err,
+                            result: result,
+                            ident: args[1].ident,
+                            args: args,
+                            name: args[1].devisInstanceName
+                        };
+                        res = jsonpack.pack(res);
+                        connection.write(res);
+                    });
+                });
+            })
+            .on('error', <span class="fstat-no" title="function not covered" >function(ex) {</span>
+<span class="cstat-no" title="statement not covered" >                console.log("handled error");</span>
+<span class="cstat-no" title="statement not covered" >                console.log(ex);</span>
+            })
+&nbsp;
+        .listen(opt, () =&gt; {
+            let address = this.server.address();
+            console.log(colors.green('listen', JSON.stringify(address)));
+        });
+    }
+&nbsp;
+    serverData(callback) {
+        this.once("dataServer", (data) =&gt; {
+<span class="cstat-no" title="statement not covered" >            this.data += JSON.stringify(data);</span>
+<span class="cstat-no" title="statement not covered" >            callback(this.data);</span>
+        });
+    }
+&nbsp;
+    client(opt) {
+        this.state = 'connected';
+        this.socket.connect(opt, () =&gt; {
+            this.opt = opt;
+            console.log(colors.green('client', JSON.stringify(opt)));
+        });
+    }
+&nbsp;
+    close() {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (this.state == 'connected') {
+            this.state = 'disconnected';
+            this.socket.destroy();
+        }
+    }
+&nbsp;
+    sendMessage(pattern, args) {
+        if (this.send === false) {
+            this.send = true;
+            let res = [pattern].concat([args]);
+            res = jsonpack.pack(res);
+            if (this.state == 'disconnected') {
+                this.socket.connect(this.opt, () =&gt; {
+                    this.state = 'connected';
+                    console.log(colors.green('client', JSON.stringify(this.opt)));
+                    this.socket.write(res);
+                });
+            } else this.socket.write(res);
+        } else {
+            this.once(1, () =&gt; {
+                this.sendMessage(pattern, args);
+            })
+        }
+    }
+&nbsp;
+}
+&nbsp;
+module.exports = Transport;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 16 2017 13:20:30 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
