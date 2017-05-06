@@ -7,8 +7,8 @@ const chai = require("chai"),
     jsonet = require("../lib/jsonet/index"),
     Transport = require("../lib/transport"),
     jsonpack = require("jsonpack"),
-    EventEmitter = require('events');
-devis = require("../devis");
+    EventEmitter = require('events'),
+    devis = require("../devis");
 let transport;
 
 describe("Devis Transport Class", function() {
