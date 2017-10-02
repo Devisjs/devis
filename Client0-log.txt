@@ -1,1 +1,1 @@
-local match:{"action":"gamer","cmd":"play"},match:{"action":"gamer","cmd":"pause"},match:"notAnObject",match:null,match:{"action":"foo","cmd":"pause"},match:{"action":"foo","cmd":"play"},match:{"action":"game","cmd":"play"},match:{"action":"server","cmd":"Test"},match:{"action":"foo","cmd":"bar"}
+local match:{"action":"gamer","cmd":"play"},match:{"action":"gamer","cmd":"pause"},match:{"action":"foo","cmd":"pause"},match:{"action":"game","cmd":"play"},match:{"action":"server","cmd":"Test"},match:{"action":"foo","cmd":"bar"}
