@@ -138,7 +138,7 @@ describe("Devis Core", function() {
                 core.add({
                     action: "foo",
                     cmd: "play"
-                }, "notAFunction")
+                }, "not-a-function")
             }).to.throw(Error, "handle should be a function");
         });
     });
