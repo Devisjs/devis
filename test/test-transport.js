@@ -1,13 +1,13 @@
 /* Copyright (c) 2017 Devis, MIT License */
-'use strict';
+"use strict";
 
 const chai = require("chai"),
-    cmd = require('node-cmd'),
+    cmd = require("node-cmd"),
     expect = chai.expect,
     jsonet = require("../lib/jsonet/index"),
     Transport = require("../lib/transport"),
     jsonpack = require("jsonpack"),
-    EventEmitter = require('events'),
+    EventEmitter = require("events"),
     devis = require("../devis");
 let transport;
 
@@ -21,13 +21,13 @@ describe("Devis Transport Class", function() {
             expect(transport.send).to.be.false;
         });
         it("should create a socket object", function() {
-            expect(transport.socket).to.be.an('object');
+            expect(transport.socket).to.be.an("object");
         });
         it("should be disconnected", function() {
-            expect(transport.state).to.equal('disconnected');
+            expect(transport.state).to.equal("disconnected");
         });
         it("should have an array for callbacks", function() {
-            expect(transport.callback).to.be.an('array');
+            expect(transport.callback).to.be.an("array");
             expect(transport.callback).to.have.lengthOf(0);
         });
         it("should have an empty data, options and server", function() {
@@ -43,7 +43,7 @@ describe("Devis Transport Class", function() {
             transport.getCallback(1, "dataServer", (err, result, id) => {
                 console.log(result);
             });
-            transport.emit(1 + '' + 'dataServer', {
+            transport.emit(1 + "" + "dataServer", {
                 err: null,
                 data: "Data sent successfully",
                 id: 1
@@ -54,13 +54,13 @@ describe("Devis Transport Class", function() {
     describe("#listen", function() {
         it("should create a server and send send server data to clients", function() {
             devis.add({
-                action: 'server',
-                cmd: 'Test'
+                action: "server",
+                cmd: "Test"
             }, function(args, done) {
                 done(null, "test from client " + args.name);
             });
             devis.listen({
-                host: '127.0.0.1',
+                host: "127.0.0.1",
                 port: 8181
             });
         });
@@ -76,8 +76,8 @@ describe("Devis Transport Class", function() {
             }).setName("Client0");
         });
         // devisClient.clients[0].sendMessage({
-        //     action: 'server',
-        //     cmd: 'Test'
+        //     action: "server",
+        //     cmd: "Test"
         // });
     });
     describe("#sendMessage", function() {
@@ -88,8 +88,8 @@ describe("Devis Transport Class", function() {
             args.ident = ++devisClient.ident;
             args.devisInstanceName = devisClient.name;
             devisClient.clients[0].sendMessage({
-                action: 'server',
-                cmd: 'Test',
+                action: "server",
+                cmd: "Test",
                 clientId: 0
             }, args);
         });
@@ -100,15 +100,15 @@ describe("Devis Transport Class", function() {
             args.ident = ++devisClient.ident;
             args.devisInstanceName = devisClient.name;
             devisClient.clients[0].sendMessage({
-                action: 'server',
-                cmd: 'Test',
+                action: "server",
+                cmd: "Test",
                 clientId: 0
             }, args);
             args.ident = ++devisClient.ident;
             args.devisInstanceName = devisClient.name;
             devisClient.clients[0].sendMessage({
-                action: 'server',
-                cmd: 'Test',
+                action: "server",
+                cmd: "Test",
                 clientId: 0
             }, args);
         });
@@ -122,8 +122,8 @@ describe("Devis Transport Class", function() {
             args.ident = ++devisClient.ident;
             args.devisInstanceName = devisClient.name;
             devisClient.clients[0].sendMessage({
-                action: 'server',
-                cmd: 'Test',
+                action: "server",
+                cmd: "Test",
                 clientId: 0
             }, args);
         });
