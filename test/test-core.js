@@ -1,12 +1,12 @@
 /* Copyright (c) 2017 Devis, MIT License */
 "use strict";
 const chai = require("chai"),
-    cmd = require('node-cmd'),
+    cmd = require("node-cmd"),
     expect = chai.expect,
     Core = require("../lib/core.js"),
     Transport = require("../lib/transport"),
     devisP = require("devisPattern"),
-    childProcess = require('child_process');
+    childProcess = require("child_process");
 let core, Servercore;
 
 
@@ -18,7 +18,7 @@ describe("Devis Core", function() {
             expect(core.name).to.equal("untitled");
         });
         it("should have an array for clients", function() {
-            expect(core.clients).to.be.an('array');
+            expect(core.clients).to.be.an("array");
             expect(core.clients).to.be.empty;
             expect(core.clients).to.have.lengthOf(0);
         });
@@ -43,13 +43,13 @@ describe("Devis Core", function() {
             Servercore = new Core(devisPatternServer);
             Servercore.setName("server");
             Servercore.add({
-                action: 'foo',
-                cmd: 'bar'
+                action: "foo",
+                cmd: "bar"
             }, function(args, done) {
                 done(null, "the client " + args.test + " are connected to this distant microservice");
             });
             var coreAfterServer = Servercore.listen({
-                host: '127.0.0.1',
+                host: "127.0.0.1",
                 port: 3030
             }); //try with tcp
             expect(Servercore).to.equal(coreAfterServer);
@@ -59,12 +59,12 @@ describe("Devis Core", function() {
     describe("#client", function() {
         it("should create an instance of transport (client) and connect to the server", function() {
             core.client({
-                host: '127.0.0.1',
+                host: "127.0.0.1",
                 port: 3030,
                 id: 0
             });
             expect(core.clients[0]).to.be.an.instanceof(Transport);
-            expect(core.clients[0].socket['_socket']['connecting']).to.equal(true);
+            expect(core.clients[0].socket["_socket"]["connecting"]).to.equal(true);
             expect(core.clients[0].state).to.equal("connected");
         });
         it("should increment the number of clients", function() {
@@ -73,7 +73,7 @@ describe("Devis Core", function() {
         it("should throw an exception if the id is not given", function() {
             expect(function() {
                 core.client({
-                    host: '127.0.0.1',
+                    host: "127.0.0.1",
                     port: 3032
                 })
             }).to.throw(Error, "Id can not be empty");
@@ -81,7 +81,7 @@ describe("Devis Core", function() {
         it("should throw an exception if the id already exists", function() {
             expect(function() {
                 core.client({
-                    host: '127.0.0.1',
+                    host: "127.0.0.1",
                     port: 3030,
                     id: 0
                 })
@@ -92,8 +92,8 @@ describe("Devis Core", function() {
     describe("#add", function() {
         it("should add a pattern to the microsevice", function() {
             core.add({
-                action: 'game',
-                cmd: 'play'
+                action: "game",
+                cmd: "play"
             }, function(args, done) {
                 done(null, args.name + " is playing game now");
             });
@@ -103,8 +103,8 @@ describe("Devis Core", function() {
         });
         it("should add a pattern without needed arguments to the microsevice", function() {
             core.add({
-                action: 'foo',
-                cmd: 'pause'
+                action: "foo",
+                cmd: "pause"
             }, function(args, done) {
                 done(null, "player X is pausing game now");
             });
@@ -112,8 +112,8 @@ describe("Devis Core", function() {
         it("should throw an exception if the pattern already exists", function() {
             expect(function() {
                 core.add({
-                    action: 'game',
-                    cmd: 'play'
+                    action: "game",
+                    cmd: "play"
                 }, function(args, done) {
                     done(null, args.name + " is playing game now");
                 })
@@ -136,8 +136,8 @@ describe("Devis Core", function() {
         it("should throw an exception if the handle are not a function", function() {
             expect(function() {
                 core.add({
-                    action: 'foo',
-                    cmd: 'play'
+                    action: "foo",
+                    cmd: "play"
                 }, "notAFunction")
             }).to.throw(Error, "handle should be a function");
         });
@@ -146,8 +146,8 @@ describe("Devis Core", function() {
     describe("#act", function() {
         it("should successively detect that there is not arguments there", function() {
             var coreAfterServer = core.act({
-                action: 'foo',
-                cmd: 'pause'
+                action: "foo",
+                cmd: "pause"
             }, function(err, result) {
                 if (err) throw err;
                 console.log(result);
@@ -157,8 +157,8 @@ describe("Devis Core", function() {
         it("should find the pattern on his own instance", function() {
 
             var coreAfterServer = core.act({
-                action: 'game',
-                cmd: 'play'
+                action: "game",
+                cmd: "play"
             }, {
                 name: "foo"
             }, function(err, result) {
@@ -170,8 +170,8 @@ describe("Devis Core", function() {
         it("should find the pattern on local microservice", function() {
             core.use("../examples/server");
             var coreAfterServer = core.act({
-                action: 'gamer',
-                cmd: 'pause'
+                action: "gamer",
+                cmd: "pause"
             }, {
                 name: "hmida"
             }, function(err, res) {
@@ -183,11 +183,12 @@ describe("Devis Core", function() {
         it("should throw an exception if the pattern doesn't exist", function() {
             expect(function() {
                 core.act({
-                    action: 'gamer',
-                    cmd: 'player'
+                    action: "gamer",
+                    cmd: "player"
                 }, {
                     name: "foo"
                 }, function(err, result) {
+                    console.log("test");
                     if (err) throw err;
                     console.log(result);
                 })
@@ -196,8 +197,8 @@ describe("Devis Core", function() {
         it("should find the pattern on distant microservice", function() {
             var coreAfterServer = core.act({
                     clientId: 0,
-                    action: 'foo',
-                    cmd: 'bar'
+                    action: "foo",
+                    cmd: "bar"
                 }, {
                     test: "Client0"
                 },
@@ -252,7 +253,7 @@ describe("Devis Core", function() {
     describe("#close", function() {
         it("should close the connection between the given client and the server", function() {
             core.close(0);
-            expect(core.clients[0].socket['_socket']['connecting']).to.equal(false);
+            expect(core.clients[0].socket["_socket"]["connecting"]).to.equal(false);
             expect(core.clients[0].state).to.equal("disconnected");
         });
     });
