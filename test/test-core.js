@@ -5,8 +5,7 @@ const chai = require("chai"),
     expect = chai.expect,
     Core = require("../lib/core.js"),
     Transport = require("../lib/transport"),
-    devisP = require("devisPattern"),
-    childProcess = require("child_process");
+    devisP = require("devisPattern");
 let core, Servercore;
 
 
