@@ -2,7 +2,7 @@
 "use strict";
 
 const Core = require("./lib/core"),
-    DevisP = require("devisPattern"),
-    devisPattern=new DevisP();
+	DevisP = require("devisPattern"),
+	devisPattern=new DevisP();
 let devis = new Core(devisPattern);
 module.exports = devis;
