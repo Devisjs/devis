@@ -9,7 +9,7 @@ if (process.argv[2] === "connect") {
         if (process.argv[i] !== ":" && process.argv[i] !== ",") {
             res[process.argv[i]] = process.argv[i + 2];
             i += 3;
-        } else i++;
+        } else {i++;}
     }
 
     res['id'] = 1;
@@ -17,7 +17,7 @@ if (process.argv[2] === "connect") {
     devis.client(res);
 
 
-} else devis.use(process.argv[2]);
+} else {devis.use(process.argv[2]);}
 
 devis.setName("devis");
 devis.log();

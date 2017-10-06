@@ -18,6 +18,6 @@ devis.add({
     done(null, {
         result: args.name
     });
-})
+});
 
 module.exports=devis;
