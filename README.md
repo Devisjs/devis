@@ -1,7 +1,7 @@
 # Devis       
 
 
-<img  src="https://8zzp5w.dm2302.livefilestore.com/y3mfmEBf29sGXflOWN_Hk0yFy3debRCUbdQiTEuttJh0bAg3axpzhmJspRFdOnaLwKylPPYewtA8M-z1_RO2YgjBkOU75s18kvWdqPeT5z7wXXdjKBu3tPeKu4L_FFGn_R5UKIH6LspIBhy-JMYBVT6vT0GusOzoPkbBdXGxN0rnNk?width=600&height=600&cropmode=none" href="http://devisjs.surge.sh" width="250" />
+<img  src="https://avatars3.githubusercontent.com/u/21971184?v=4&amp;s=200" href="http://devisjs.surge.sh" width="250" />
 
 >A microservices framework for Node.js
 
@@ -130,7 +130,7 @@ devis.add({
 
 ```javascript
 var devis=require("devis");
-devis.use("./core")
+devis.use(__dirname+"./core")
 .listen({
   host:'127.0.0.1',
   port:3030
