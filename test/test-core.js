@@ -166,7 +166,7 @@ describe("Devis Core", function() {
 			expect(core).to.equal(coreAfterServer);
 		});
 		it("should find the pattern on local microservice", function() {
-			core.use("../examples/server");
+			core.use(__dirname+"/../examples/server.js");
 			var coreAfterServer = core.act({
 				action: "gamer",
 				cmd: "pause"
@@ -216,7 +216,7 @@ describe("Devis Core", function() {
 
 	describe("#use", function() {
 		it("should get patterns and return the same instance of Core ", function() {
-			var coreAfterServer = core.use("../examples/server");
+			var coreAfterServer = core.use(__dirname+"/../examples/server.js");
 			expect(coreAfterServer).to.equal(core);
 		});
 	});
@@ -224,7 +224,7 @@ describe("Devis Core", function() {
 	describe("#usePath", function() {
 		it("should throw an exception if the pattern doesn't exist", function() {
 
-			core.usePath("../examples/server");
+			core.usePath(__dirname+"/../examples/server.js");
 
 		});
 	});
