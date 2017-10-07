@@ -17,7 +17,7 @@ if (process.argv[2] === "connect") {
 	devis.client(res);
 
 
-} else {devis.use(process.argv[2]);}
+} else {devis.use(process.argv[2]);//full path!}
 
 devis.setName("devis");
 devis.log();
