@@ -35,9 +35,7 @@
     "colors": "^1.1.2",
     "devisPattern": "^1.1.0",
     "eraro": "^0.4.1",
-    "jsonpack": "^1.1.5",
-    "lodash": "^4.15.0",
-    "use-plugin": "^0.3.1"
+    "jsonpack": "^1.1.5"
   },
   "devDependencies": {
     "chai": "^3.5.0",
