@@ -1,6 +1,6 @@
 {
   "name": "devis",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A microservices framework for Node.js",
   "main": "devis.js",
   "scripts": {
@@ -40,7 +40,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "istanbul": "^0.4.5",
-    "mocha": "^4.0.1",
-    "node-cmd": "^3.0.0"
+    "mocha": "^3.2.0",
+    "node-cmd": "^2.0.0"
   }
 }
