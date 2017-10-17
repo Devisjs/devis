@@ -1,1 +1,0 @@
-local [{"action":"gamer","cmd":"play"},{"action":"gamer","cmd":"pause"},{"action":"foo","cmd":"pause"},{"action":"game","cmd":"play"},{"action":"server","cmd":"Test"},{"action":"foo","cmd":"bar"}]
