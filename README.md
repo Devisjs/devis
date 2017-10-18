@@ -130,7 +130,7 @@ devis.add({
 
 ```javascript
 var devis=require("devis");
-devis.use(__dirname+"./core")
+devis.use("./core")
 .listen({
   host:'127.0.0.1',
   port:3030
