@@ -84,6 +84,7 @@ Microservices Architecture (MSA) and Service-Oriented Architecture (SOA) both re
 | A systematic change requires modifying the monolith | A systematic change is to create a new service      |
 | Maximizes application service reusability | More focused on decoupling      |
 | Uses traditional relational databases more often | Uses modern, non-relational databases     |
+
 <a href="http://www.bmc.com/blogs/microservices-vs-soa-whats-difference/">read more</a>
 
 ## pattern matching 
