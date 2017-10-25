@@ -610,11 +610,11 @@ Suppose you want to view or retrieve the functionality of a microservice, you wi
     |_________/>folderC
     |_______________________/>folderE
     |_/>folderB
-    //For example, if you are in the folderA folder :
+    //For example, if you are inside the folder folderA  :
      devis.getFunctions("local", "microservice2.js", "folderParent", 1, (res) => {
             //do something 
     });
-    //For example, if you are in the folderE folder :
+    //For example, if you are inside the folder folderE :
     devis.getFunctions("local", "microservice2.js", "folderParent", -1, (res) => {
             //do something 
     });
