@@ -40,7 +40,7 @@ SOA defines 4 basic service types as depicted below.
 
 * Infrastructure services implement non-functional tasks such as authentication, auditing, security, and logging. They can be invoked from either application services or enterprise services.
 
-###Solution : microservices 
+### Solution : microservices 
 In its simplest form, the Microservices design approach refers to a decoupled federation of services, with independent modifications for each, and defined communication standards.
 A decomposition of the global application into independent scenario-based services is a better long-term approach for large-scale applications.
 
