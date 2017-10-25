@@ -148,7 +148,7 @@ Before you can use Devis you have to be able to install it on your machine. We m
     * Install the xcode command line tools by typing the following command string : 
     
 ```bash
-xcode-select --install
+   $ xcode-select --install
 ```
 * <a href="https://brew.sh">homebrew</a>  
 * <a href="https://clang.llvm.org">Clang</a> or <a href="https://gcc.gnu.org">GCC</a> via homebrew
@@ -158,7 +158,7 @@ xcode-select --install
 congratulations! now after configuring your machine you can install Devis by running the following command:
 
 ```bash
-$ npm install --save devis
+   $ npm install --save devis
 ```
 
 ### Microservice architecture
