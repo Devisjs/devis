@@ -10,7 +10,7 @@
 <a href="http://travis-ci.org/Devisjs/devis"><img src="https://travis-ci.org/Devisjs/devis.svg?branch=master" alt=""></a>
   <a href="https://www.bithound.io/github/Devisjs/devis"><img src="https://www.bithound.io/github/Devisjs/devis/badges/score.svg" alt="bitHound Overall Score"></a>
   <br>
-
+</p>
  Devis is a framework capable of creating and managing microservices under node.js.
  
 You will find in this documentation the principles of Devis framework and also, detailed explanations with examples on its use.
@@ -30,7 +30,7 @@ Traditional monolithic design tends to amplify and enable coupling. While it’s
 
 ### what is service oriented architecture (SOA)?
 SOA defines 4 basic service types as depicted below.
-<img src = "http://blogs.bmc.com/wp-content/uploads/2017/05/coordination.jpg">
+<img src = "http://blogs.bmc.com/wp-content/uploads/2017/05/coordination.jpg"><a href="http://www.bmc.com/blogs/microservices-vs-soa-whats-difference/">Picture source</a>
 
 * Business services are coarse-grained services that define core business operations. They are usually represented through XML, Web Services Definition Language (WSDL) or Business Process Execution Language (BPEL).
 
@@ -59,6 +59,7 @@ Microservices must meet the following criteria:
 
 #### microservices architecture vs monolithic architecture
 <img src ="https://docs.microsoft.com/en-us/azure/service-fabric/media/service-fabric-overview-microservices/monolithic-vs-micro.png">
+<a href="https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-overview-microservices">Picture source</a>
 
  * Figure 1: A monolithic application contains features specific to a domain. It is normally divided into functional layers: web, business and data.
 
@@ -73,7 +74,8 @@ Microservices must meet the following criteria:
 #### microservices architecture vs SOA
 Microservices Architecture (MSA) and Service-Oriented Architecture (SOA) both rely on services as the main component. But they vary greatly in terms of service characteristics.
 
-<img src ="http://blogs.bmc.com/wp-content/uploads/2017/05/SOA-architecture-vs-microservices.jpg">
+<img src ="http://blogs.bmc.com/wp-content/uploads/2017/05/SOA-architecture-vs-microservices.jpg"> 
+<a href="http://www.bmc.com/blogs/microservices-vs-soa-whats-difference/">Picture source</a>
 
 
 | SOA        | MSA           | 
@@ -634,10 +636,4 @@ Suppose you want to view or retrieve the functionality of a microservice, you wi
        //do something 
     });
    ```
-        
-
-
-
-
-
 
