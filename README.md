@@ -619,8 +619,9 @@ Suppose you want to view or retrieve the functionality of a microservice, you wi
             //do something 
     });
     ```
-        * First, he will find the location of the file, then find the location of your microservice in the microservice and return his functions as an object.
-        * In general, we give the name of the root folder of the project as an argument for a more optimal search.
+    
+     * First, he will find the location of the file, then find the location of your microservice in the microservice and return his functions as an object.
+     * In general, we give the name of the root folder of the project as an argument for a more optimal search.
         
 *  Remotely :
     *  By giving as argument the connection parameters of the microservice.
