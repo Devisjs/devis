@@ -243,8 +243,8 @@ Running a microservice using PM2 :
  
 * Syntaxe : 
 
-```js
-pm2 start devisMicroservice;
+```bash
+    $ pm2 start devisMicroservice;
 ``` 
 * Commands overview 
 
