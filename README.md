@@ -90,7 +90,7 @@ Microservices Architecture (MSA) and Service-Oriented Architecture (SOA) both re
 
 <a href="http://www.bmc.com/blogs/microservices-vs-soa-whats-difference/">read more</a>
 
-In my personal opinion, decoupling is the most important point in the architecture of microservices must completely exit the monolithic logic.
+In my personal opinion, decoupling is the most important point in the architecture of microservices and users must completely exit the monolithic logic.
 
 Indeed, the intercommunication of microservices should be close to zero, each Microservice must be strictly independent of others. The only tolerable communication between microservices is done only through the database and nothing else, because the malfunction of a Microservice shall in no way affect the operation of others.
 
