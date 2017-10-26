@@ -30,7 +30,8 @@ Traditional monolithic design tends to amplify and enable coupling. While it’s
 
 ### what is service oriented architecture (SOA)?
 SOA defines 4 basic service types as depicted below.
-<img src = "http://blogs.bmc.com/wp-content/uploads/2017/05/coordination.jpg"><a href="http://www.bmc.com/blogs/microservices-vs-soa-whats-difference/">Picture source</a>
+<img src = "http://blogs.bmc.com/wp-content/uploads/2017/05/coordination.jpg">
+<a href="http://www.bmc.com/blogs/microservices-vs-soa-whats-difference/">Picture source</a>
 
 * Business services are coarse-grained services that define core business operations. They are usually represented through XML, Web Services Definition Language (WSDL) or Business Process Execution Language (BPEL).
 
@@ -148,7 +149,7 @@ Before you can use Devis you have to be able to install it on your machine. We m
     * Install the xcode command line tools by typing the following command string : 
     
 ```bash
-   $ xcode-select --install
+    $ xcode-select --install
 ```
 * <a href="https://brew.sh">homebrew</a>  
 * <a href="https://clang.llvm.org">Clang</a> or <a href="https://gcc.gnu.org">GCC</a> via homebrew
@@ -158,7 +159,7 @@ Before you can use Devis you have to be able to install it on your machine. We m
 congratulations! now after configuring your machine you can install Devis by running the following command:
 
 ```bash
-   $ npm install --save devis
+    $ npm install --save devis
 ```
 
 ### Microservice architecture
@@ -214,12 +215,17 @@ listen({parameters},callback);
     * TCP : 
     
  ```js
-listen({host: "127.0.0.1" port : 3030});
+listen({
+        host: "127.0.0.1"
+        port: 3030
+});
 ``` 
     * Unix Socket : 
     
  ```js
-listen({path: "/tmp/mysoscket.sock"},(err,result) => {
+listen({
+        path: "/tmp/mysoscket.sock"
+    }, (err, result) => {
         //do something
 });
 ``` 
@@ -227,7 +233,9 @@ listen({path: "/tmp/mysoscket.sock"},(err,result) => {
     * named pipes : 
     
 ``` javascript
-listen({path: "\\\\\.\\pipe\\mynamedpipe"});
+listen({
+    path: "\\\\\.\\pipe\\mynamedpipe"
+});
 ``` 
     
 ###### Running a PM2 instance with Devis
@@ -243,7 +251,7 @@ Running a microservice using PM2 :
  
 * Syntaxe : 
 
-```bash
+```js
     $ pm2 start devisMicroservice;
 ``` 
 * Commands overview 
@@ -318,51 +326,59 @@ Now we will see a complete example for creating and deploying a microservice loc
 let calculatorMicroservice = require("devis");
 
 // Add addition function to the calculator
-calculatorMicroservice.add({action : "calculator",cmd : "add"}, (args,done)=>{
+calculatorMicroservice.add({
+    action: "calculator",
+    cmd: "add"
+}, (args, done) => {
     let error;
-    if(!args.number1 || !args.number2){
+    if (!args.number1 || !args.number2) {
         error = "you forgot to type a number!";
-    }
-    else if(typeof args.number1 !== "number" || typeof args.number2 !== "number"){
+    } else if (typeof args.number1 !== "number" || typeof args.number2 !== "number") {
         error = "entries should be numbers!";
     }
-    done(error , args.number1+args.number2);
+    done(error, args.number1 + args.number2);
 });
 
 // Add multiplication function to the calculator
-calculatorMicroservice.add({action : "calculator",cmd : "mult"}, (args,done)=>{
+calculatorMicroservice.add({
+    action: "calculator",
+    cmd: "mult"
+}, (args, done) => {
     let error;
-    if(!args.number1 || !args.number2){
+    if (!args.number1 || !args.number2) {
         error = "you forgot to type a number!";
-    }
-    else if(typeof args.number1 !== "number" || typeof args.number2 !== "number"){
+    } else if (typeof args.number1 !== "number" || typeof args.number2 !== "number") {
         error = "entries should be numbers!";
     }
-    done(error , args.number1*args.number2);
+    done(error, args.number1 * args.number2);
 });
 
 // Add substraction function to the calculator
-calculatorMicroservice.add({action : "calculator",cmd : "sub"}, (args,done)=>{
+calculatorMicroservice.add({
+    action: "calculator",
+    cmd: "sub"
+}, (args, done) => {
     let error;
-    if(!args.number1 || !args.number2){
+    if (!args.number1 || !args.number2) {
         error = "you forgot to type a number!";
-    }
-    else if(typeof args.number1 !== "number" || typeof args.number2 !== "number"){
+    } else if (typeof args.number1 !== "number" || typeof args.number2 !== "number") {
         error = "entries should be numbers!";
     }
-    done(error , args.number1-args.number2);
+    done(error, args.number1 - args.number2);
 });
 
 // Add division function to the calculator
-calculatorMicroservice.add({action : "calculator",cmd : "div"}, (args,done)=>{
+calculatorMicroservice.add({
+    action: "calculator",
+    cmd: "div"
+}, (args, done) => {
     let error;
-    if(!args.number1 || !args.number2){
+    if (!args.number1 || !args.number2) {
         error = "you forgot to type a number!";
-    }
-    else if(typeof args.number1 !== "number" || typeof args.number2 !== "number"){
+    } else if (typeof args.number1 !== "number" || typeof args.number2 !== "number") {
         error = "entries should be numbers!";
-        }
-    done(error , args.number1/args.number2);
+    }
+    done(error, args.number1 / args.number2);
 });
 
 //export the microservice
@@ -376,56 +392,64 @@ module.exports = calculatorMicroservice;
 let calculatorMicroservice = require("devis");
 
 // Add addition function to the calculator
-calculatorMicroservice.add({action : "calculator",cmd : "add"}, (args,done)=>{
+calculatorMicroservice.add({
+    action: "calculator",
+    cmd: "add"
+}, (args, done) => {
     let error;
-    if(!args.number1 || !args.number2){
+    if (!args.number1 || !args.number2) {
         error = "you forgot to type a number!";
-    }
-    else if(typeof args.number1 !== "number" || typeof args.number2 !== "number"){
+    } else if (typeof args.number1 !== "number" || typeof args.number2 !== "number") {
         error = "entries should be numbers!";
     }
-    done(error , args.number1+args.number2);
+    done(error, args.number1 + args.number2);
 });
 
 // Add multiplication function to the calculator
-calculatorMicroservice.add({action : "calculator",cmd : "mult"}, (args,done)=>{
+calculatorMicroservice.add({
+    action: "calculator",
+    cmd: "mult"
+}, (args, done) => {
     let error;
-    if(!args.number1 || !args.number2){
+    if (!args.number1 || !args.number2) {
         error = "you forgot to type a number!";
-    }
-    else if(typeof args.number1 !== "number" || typeof args.number2 !== "number"){
+    } else if (typeof args.number1 !== "number" || typeof args.number2 !== "number") {
         error = "entries should be numbers!";
     }
-    done(error , args.number1*args.number2);
+    done(error, args.number1 * args.number2);
 });
 
 // Add substraction function to the calculator
-calculatorMicroservice.add({action : "calculator",cmd : "sub"}, (args,done)=>{
+calculatorMicroservice.add({
+    action: "calculator",
+    cmd: "sub"
+}, (args, done) => {
     let error;
-    if(!args.number1 || !args.number2){
+    if (!args.number1 || !args.number2) {
         error = "you forgot to type a number!";
-    }
-    else if(typeof args.number1 !== "number" || typeof args.number2 !== "number"){
+    } else if (typeof args.number1 !== "number" || typeof args.number2 !== "number") {
         error = "entries should be numbers!";
     }
-    done(error , args.number1-args.number2);
+    done(error, args.number1 - args.number2);
 });
 
 // Add division function to the calculator
-calculatorMicroservice.add({action : "calculator",cmd : "div"}, (args,done)=>{
+calculatorMicroservice.add({
+    action: "calculator",
+    cmd: "div"
+}, (args, done) => {
     let error;
-    if(!args.number1 || !args.number2){
+    if (!args.number1 || !args.number2) {
         error = "you forgot to type a number!";
-    }
-    else if(typeof args.number1 !== "number" || typeof args.number2 !== "number"){
+    } else if (typeof args.number1 !== "number" || typeof args.number2 !== "number") {
         error = "entries should be numbers!";
-        }
-    done(error , args.number1/args.number2);
+    }
+    done(error, args.number1 / args.number2);
 });
 
 //use the network 
 calculatorMicroservice.listen({
-    path:"/tmp/calculatorSocket.sock"
+    path: "/tmp/calculatorSocket.sock"
 });
 ```
 * run the microservice : 
@@ -455,27 +479,39 @@ Sometimes, you will need to do a processing only after successful connectivity w
 * Syntax : 
 
 ```javascript
-client({id : unique_id, [parameters]},callback);
+client({
+    id: unique_id,
+    [parameters]
+}, callback);
 ```
 * Examples : 
     * TCP : 
     
  ```js
-client({id :  1, host : "127.0.0.1" port : 3030}, (err,result)=>{
-        //do something 
-    });
+client({
+    id: 1,
+    host: "127.0.0.1"
+    port: 3030
+}, (err, result) => {
+    //do something 
+});
 ``` 
     * Unix Socket : 
     
- ```js
-client({id :  2,path : "/tmp/mysoscket.sock"});
+    ```js
+client({
+    id: 2,
+    path: "/tmp/mysoscket.sock"
+});
 ``` 
-    
     * named pipes : 
     
-```javascript
-    client({id :  3, path : "\\\\\.\\pipe\\mynamedpipe"});
-``` 
+    ```javascript
+    client({
+        id: 3,
+        path: "\\\\\.\\pipe\\mynamedpipe"
+    });
+    ``` 
 
 ##### Use microservice functions 
 Now you are connected to a microservice, locally or remotely, and you want to use its functions you will use the ***act*** method. It takes 3 arguments:
@@ -500,44 +536,69 @@ Now we will see an example of using a microservice. We will resume the example o
 let calculatorClient = require("devis");
 
 //Use the local calculator microservice
-calculatorClient.use(__dirname+"/calculator");
+calculatorClient.use(__dirname + "/calculator");
 
-// Use the addition function 
-calculatorClient.act({action : "calculator",cmd : "add"},{number1 : 3, number2 : 5}, (error,result)=>{
-    if(error){ 
+// Use the addition function
+calculatorClient.act({
+    action: "calculator",
+    cmd: "add"
+}, {
+    number1: 3,
+    number2: 5
+}, (error, result) => {
+    if (error) {
         console.log(error);
+    } else {
+        console.log("the addition of " + number1 + "and " + number2 + "is : " + result);
     }
-    else {
-        console.log("the addition of "+ number1 + "and " + number2 + "is : "+ result);
 });
 
-// Use the multiplication function 
-calculatorClient.act({action : "calculator",cmd : "mult"},{number1 : 3, number2 : 5}, (error,result)=>{
-    if(error){ 
+// Use the multiplication function
+calculatorClient.act({
+    action: "calculator",
+    cmd: "mult"
+}, {
+    number1: 3,
+    number2: 5
+}, (error, result) => {
+    if (error) {
         console.log(error);
+    } else {
+        console.log("the multiplication of " + number1 + "and " + number2 + "is : " + result);
     }
-    else {
-        console.log("the multiplication of "+ number1 + "and " + number2 + "is : "+ result);
 });
 
-// Use the substraction function 
-calculatorClient.act({action : "calculator",cmd : "sub"},{number1 : 3, number2 : 5}, (error,result)=>{
-    if(error){ 
+// Use the substraction function
+calculatorClient.act({
+    action: "calculator",
+    cmd: "sub"
+}, {
+    number1: 3,
+    number2: 5
+}, (error, result) => {
+    if (error) {
         console.log(error);
+    } else {
+        console.log("the substraction of " + number1 + "and " + number2 + "is : " + result);
     }
-    else {
-        console.log("the substraction of "+ number1 + "and " + number2 + "is : "+ result);
 });
 
-// Use the division function 
-calculatorClient.act({action : "calculator",cmd : "div"},{number1 : 3, number2 : 5}, (error,result)=>{
-    if(error){ 
+// Use the division function
+calculatorClient.act({
+    action: "calculator",
+    cmd: "div"
+}, {
+    number1: 3,
+    number2: 5
+}, (error, result) => {
+    if (error) {
         console.log(error);
+    } else {
+        console.log("the division of " + number1 + "and " + number2 + "is : " + result);
     }
-    else {
-        console.log("the division of "+ number1 + "and " + number2 + "is : "+ result);
 });
 ```
+
 ###### Distant microservice
 We will use in this example, the **Distantcalculator** remote microservice, using the Unix Socket protocol:
 
@@ -546,42 +607,73 @@ We will use in this example, the **Distantcalculator** remote microservice, usin
 let calculatorClient = require("devis");
 
 //Use the distant calculator microservice
-calculatorClient.client({id:1, path:'/tmp/calculatorSocket'})
+calculatorClient.client({
+    id: 1,
+    path: '/tmp/calculatorSocket'
+})
 
 // Use the addition function for the microservice 1 
-calculatorClient.act({id:1, action : "calculator",cmd : "add"},{number1 : 3, number2 : 5}, (error,result)=>{
-    if(error){ 
+calculatorClient.act({
+    id: 1,
+    action: "calculator",
+    cmd: "add"
+}, {
+    number1: 3,
+    number2: 5
+}, (error, result) => {
+    if (error) {
         console.log(error);
+    } else {
+        console.log("the addition of " + number1 + "and " + number2 + "is : " + result);
     }
-    else {
-        console.log("the addition of "+ number1 + "and " + number2 + "is : "+ result);
 });
 
 // Use the multiplication function for the microservice 1 
-calculatorClient.act({id:1, action : "calculator",cmd : "mult"},{number1 : 3, number2 : 5}, (error,result)=>{
-    if(error){ 
+calculatorClient.act({
+    id: 1,
+    action: "calculator",
+    cmd: "mult"
+}, {
+    number1: 3,
+    number2: 5
+}, (error, result) => {
+    if (error) {
         console.log(error);
+    } else {
+        console.log("the multiplication of " + number1 + "and " + number2 + "is : " + result);
     }
-    else {
-        console.log("the multiplication of "+ number1 + "and " + number2 + "is : "+ result);
 });
 
 // Use the substraction function for the microservice 1 
-calculatorClient.act({id:1, action : "calculator",cmd : "sub"},{number1 : 3, number2 : 5}, (error,result)=>{
-    if(error){ 
+calculatorClient.act({
+    id: 1,
+    action: "calculator",
+    cmd: "sub"
+}, {
+    number1: 3,
+    number2: 5
+}, (error, result) => {
+    if (error) {
         console.log(error);
+    } else {
+        console.log("the substraction of " + number1 + "and " + number2 + "is : " + result);
     }
-    else {
-        console.log("the substraction of "+ number1 + "and " + number2 + "is : "+ result);
 });
 
 // Use the division function for the microservice 1 
-calculatorClient.act({id:1, action : "calculator",cmd : "div"},{number1 : 3, number2 : 5}, (error,result)=>{
-    if(error){ 
+calculatorClient.act({
+    id: 1,
+    action: "calculator",
+    cmd: "div"
+}, {
+    number1: 3,
+    number2: 5
+}, (error, result) => {
+    if (error) {
         console.log(error);
+    } else {
+        console.log("the division of " + number1 + "and " + number2 + "is : " + result);
     }
-    else {
-        console.log("the division of "+ number1 + "and " + number2 + "is : "+ result);
 });
 ```
 #### Fetch for a microservice
@@ -612,12 +704,10 @@ Suppose you want to view or retrieve the functionality of a microservice, you wi
     |_________/>folderC
     |_______________________/>folderE
     |_/>folderB
-    
     //For example, if you are inside the folder folderA  :
      devis.getFunctions("local", "microservice2.js", "folderParent", 1, (res) => {
             //do something 
     });
-    
     //For example, if you are inside the folder folderE :
     devis.getFunctions("local", "microservice2.js", "folderParent", -1, (res) => {
             //do something 
