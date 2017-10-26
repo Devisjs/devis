@@ -53,7 +53,7 @@ You will find in this documentation the principles of Devis framework and also, 
         * [Use a microservice](#use-a-microservice )
             * [locally](#locally )
             * [Distant microservice](#distant-microservice )
-            * [Example : use a microservice](#example--using-a-microservice )
+            * [Example : use a microservice](#example--use-a-microservice )
         * [Fetch for a microservice](#fetch-for-a-microservice )
 
 
