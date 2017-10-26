@@ -15,6 +15,50 @@
  
 You will find in this documentation the principles of Devis framework and also, detailed explanations with examples on its use.
 
+## Table of Contents
+
+* [Introduction](#introduction )
+    * [what is monolithic architecture?](#what-is-monolithic-architecture)
+    * [what is service oriented architecture?](#what-is-service-oriented-architecture-soa)
+    * [Solution : microservices](#solution--microservices)
+        * [microservices architecture vs monolithic architecture](#microservices-architecture-vs-monolithic-architecture )
+        * [microservices architecture vs SOA](#microservices-architecture-vs-soa)
+* [pattern matching](#pattern-matching)
+    * [Definition](#definition )
+    * [Why using pattern matching in microservices?](#why-using-pattern-matching-in-microservices)
+    * [devisPatter](#devispattern )
+        * [C++ Addons](#c-addons )
+        * [devisPattern](#devispattern )
+* [Transport independence using protocoles for connectivit](#transport-independence-using-protocoles-for-connectivity )
+    * [Message-oriented middlewar](#message-oriented-middleware )
+    * [TCP](#tcp )
+    * [HTTP](#http )
+    * [unix socket](#unix-socket )
+    * [named pipes](#named-pipes )
+* [Devis Framework](#devis-framework )
+    * [Installation](#installation )
+        * [prerequisites](#prerequisites )
+            * [On Microsoft Windows](#on-microsoft-windows )
+            * [On Unix/GNU-Linux](#on-unixgnu-linux )
+            * [On MacOS](#on-macos )
+        * [Installation of Devis](#installation-of-devis )
+    * [Microservice architecture](#microservice-architecture )
+        * [Create a microservice](#create-a-microservice )
+            * [Add a function to the microservice](#add-a-function-to-the-microservice )
+            * [Deploy the microservice](#deploy-the-microservice )
+                * [locally](#locally )
+                * [using network](#using-network )
+                * [Running a PM2 instance with Devis](#running-a-pm2-instance-with-devis )
+                * [Example : Build a microservice](#example--build-a-microservice )
+        * [Use a microservice](#use-a-microservice )
+            * [locally](#locally )
+            * [Distant microservice](#distant-microservice )
+        * [Fetch for a microservice](#fetch-for-a-microservice )
+
+
+
+
+
 ## Introduction
 In the world of development, there are several architecture used for building applications. The 3 most popular are monolithic architecture, service oriented architecture and microservice architecture.
   
@@ -41,7 +85,7 @@ SOA defines 4 basic service types as depicted below.
 
 * Infrastructure services implement non-functional tasks such as authentication, auditing, security, and logging. They can be invoked from either application services or enterprise services.
 
-### Solution : microservices 
+### Solution : microservices
 In its simplest form, the Microservices design approach refers to a decoupled federation of services, with independent modifications for each, and defined communication standards.
 A decomposition of the global application into independent scenario-based services is a better long-term approach for large-scale applications.
 
