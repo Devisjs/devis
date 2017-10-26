@@ -90,6 +90,10 @@ Microservices Architecture (MSA) and Service-Oriented Architecture (SOA) both re
 
 <a href="http://www.bmc.com/blogs/microservices-vs-soa-whats-difference/">read more</a>
 
+In my personal opinion, decoupling is the most important point in the architecture of microservices must completely exit the monolithic logic.
+
+Indeed, the intercommunication of microservices should be close to zero, each Microservice must be strictly independent of others. The only tolerable communication between microservices is done only through the database and nothing else, because the malfunction of a Microservice shall in no way affect the operation of others.
+
 ## pattern matching 
 ### Definition      
 According to <a href="https://en.wikipedia.org/wiki/Pattern_matching"> wikipedia</a>, pattern matching is the act of checking a given sequence of tokens for the presence of the constituents of some pattern. In contrast to pattern recognition, the match usually has to be exact. The patterns generally have the form of either sequences or tree structures. Uses of pattern matching include outputting the locations (if any) of a pattern within a token sequence, to output some component of the matched pattern, and to substitute the matching pattern with some other token sequence (i.e., search and replace).
