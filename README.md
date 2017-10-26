@@ -485,25 +485,25 @@ client({
 }, callback);
 ```
 * Examples : 
-    * TCP : 
+    * TCP :
     
- ```js
-client({
-    id: 1,
-    host: "127.0.0.1"
-    port: 3030
-}, (err, result) => {
-    //do something 
-});
-``` 
+    ```javascript
+    client({
+           id: 1,
+           host: "127.0.0.1"
+           port: 3030
+       }, (err, result) => {
+           //do something 
+       }); 
+    ```  
     * Unix Socket : 
     
     ```js
-client({
-    id: 2,
-    path: "/tmp/mysoscket.sock"
-});
-``` 
+    client({
+        id: 2,
+        path: "/tmp/mysoscket.sock"
+    });
+    ``` 
     * named pipes : 
     
     ```javascript
