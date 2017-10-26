@@ -1,6 +1,6 @@
 {
   "name": "devis",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "A microservices framework for Node.js",
   "main": "devis.js",
   "scripts": {
@@ -34,8 +34,7 @@
   "dependencies": {
     "callsite": "^1.0.0",
     "colors": "^1.1.2",
-    "devisPattern": "^1.1.0",
-    "eraro": "^0.4.1",
+    "devisPattern": "^1.2.1",
     "jsonpack": "^1.1.5"
   },
   "devDependencies": {
