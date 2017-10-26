@@ -49,10 +49,11 @@ You will find in this documentation the principles of Devis framework and also, 
                 * [locally](#locally )
                 * [using network](#using-network )
                 * [Running a PM2 instance with Devis](#running-a-pm2-instance-with-devis )
-                * [Example : Build a microservice](#example--build-a-microservice )
+            * [Example : Build a microservice](#example--build-a-microservice )
         * [Use a microservice](#use-a-microservice )
             * [locally](#locally )
             * [Distant microservice](#distant-microservice )
+            * [Example : use a microservice](#example--using-a-microservice )
         * [Fetch for a microservice](#fetch-for-a-microservice )
 
 
@@ -574,7 +575,7 @@ Now you are connected to a microservice, locally or remotely, and you want to us
 act(pattern, arguments, callback);
 ```
 
-##### Example : using a microservice
+##### Example : use a microservice
 Now we will see an example of using a microservice. We will resume the example of the calculator in both cases, when the microservice is hosted locally or remotely.
 
 ###### locally 
