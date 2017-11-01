@@ -29,7 +29,7 @@ You will find in this documentation the principles of Devis framework and also, 
     * [devisPatter](#devispattern )
         * [C++ Addons](#c-addons )
         * [devisPattern](#devispattern )
-* [Transport independence using protocoles for connectivit](#transport-independence-using-protocoles-for-connectivity )
+* [Transport independence using protocoles for connectivity](#transport-independence-using-protocoles-for-connectivity )
     * [Message-oriented middlewar](#message-oriented-middleware )
     * [TCP](#tcp )
     * [HTTP](#http )
@@ -61,14 +61,14 @@ You will find in this documentation the principles of Devis framework and also, 
 
 
 ## Introduction
-In the world of development, there are several architecture used for building applications. The 3 most popular are monolithic architecture, service oriented architecture and microservice architecture.
+In the world of development, there are several architectures used for building applications. The 3 most popular are monolithic architecture, service oriented architecture and microservice architecture.
   
 ### what is monolithic architecture?
 According to <a href="https://en.wikipedia.org/wiki/Monolithic_application"> wikipedia</a>, monolithic application describes a single-tiered software application in which the user interface and data access code are combined into a single program from a single platform.
 
 Tightly coupled software presents the biggest difficulty when teams are looking to extend or change systems. As systems get larger, coupling limits the scope of change and self perpetuates. The easiest way to extend tightly coupled code is often to weave in even more interdependence.
 
-One can think of coupling as the measure of effort to separate a logical module from its reliance on another. Languages and frameworks provide a means of abstraction that help to manage the cost of this effort. Object-oriented languages generally provide some methodology to organise and segregate functionality – viz. classes, interfaces, modules, etc. The protection they offer developers against logical coupling is weak, and the barrier to entry for introducing coupled code is very low.
+One can think of coupling as the measure of effort to separate a logical module from its reliance on another. Languages and frameworks provide a means of abstraction that help to manage the cost of this effort. Object-oriented languages generally provide some methodologies to organise and segregate functionality – viz. classes, interfaces, modules, etc. The protection they offer developers against logical coupling is weak, and the barrier to entry for introducing coupled code is very low.
 
 Traditional monolithic design tends to amplify and enable coupling. While it’s possible -  with good software design, testing, and great rigour - to avoid increasing coupling over time, it is rarely seen in practice.
 <a href ="https://www.thoughtworks.com/insights/blog/monoliths-are-bad-design-and-you-know-it"> read more </a>
@@ -90,9 +90,9 @@ SOA defines 4 basic service types as depicted below.
 In its simplest form, the Microservices design approach refers to a decoupled federation of services, with independent modifications for each, and defined communication standards.
 A decomposition of the global application into independent scenario-based services is a better long-term approach for large-scale applications.
 
-A Microservice is an autonomous work unit that can perform a task without interfering with other parts of the system, similar to a workstation in a company. This has a number of advantages that can be used in favor of the engineering team to help scaler a company's systems.
+A Microservice is an autonomous work unit that can perform a task without interfering with other parts of the system, similar to a workstation in a company. This has a number of advantages that can be used in favor of the engineering team to help scale a company's systems.
 
-Today, hundreds of systems are built using Microservices oriented architectures which led the company Wakanda to integrate Node.js into its development interface and offer the necessary tools to developers to build fast and powerful Microservices.
+Today, hundreds of systems are built using Microservices oriented architectures which led the company Wakanda to integrate Node.js into its development interface and offer the necessary tools to build fast and powerful Microservices.
 
 Microservices must meet the following criteria:
 
@@ -146,7 +146,7 @@ According to <a href="https://en.wikipedia.org/wiki/Pattern_matching"> wikipedia
 Sequence patterns are often described using regular expressions and matched using techniques such as backtracking.
 
 ### Why using pattern matching in microservices?
-Why not use pattern-matching? If a message is something you as a component are interested in, you can tell by looking. Have a pattern (some template of JSON structure) that you can match the message against. It turns out that is it sufficient to be really really simple - just match against the literal values of the top level properties. That is more than enough to build entire systems with. And it gives you a component model that makes composition easy.
+Why not use pattern-matching? If a message is something you are interested in as a component, you can tell by looking at. Have a pattern (some template of JSON structure) that you can match the message against. It turns out that is it sufficient to be really really simple - just match against the literal values of the top level properties. That is more than enough to build entire systems with. And it gives you a component model that makes composition easy.
 
 ### devisPattern
 #### C++ Addons 
@@ -251,7 +251,7 @@ module.exports = devisMicroservice;
 ```
 
 ###### using network  
-To be able to deploy the microservie using a protocol, it is enough to use the method listen of Devis, it takes an object with several parameters according to the protocol used.
+To be able to deploy the microservice using a protocol, it is enough to use the method listen of Devis, it takes an object with several parameters according to the protocol used.
 
 Sometimes you will need to do some processing only after starting your server, in which case you will simply use the callback function of the listen method.
 
