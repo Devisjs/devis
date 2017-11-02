@@ -185,7 +185,7 @@ Before you can use Devis you have to be able to install it on your machine. We m
 * <a href="https://www.visualstudio.com">Visual studio</a> : 
     * A recent version of visual studio (you have to add visual c++ during the installation), the free Community version works well.
 * <a href="https://cmake.org/download/">Cmake </a>:
-    * *.msi* version for windows: You must check the addition of the path for all users, And restart your computer after installation.
+    * *.msi* version for windows: You must check the addition of the path for all users.
 * restart the computer 
 
 ##### On Unix/GNU-Linux
