@@ -781,7 +781,7 @@ To be able to use a plug in official or created by a third, we have to call the 
 * Syntax :  
 
 ```javascript
-plug(plugging-name);
+plug(plugging_name);
 ```
 
 ##### Example : use the devis-mongo-client plugging
