@@ -786,9 +786,10 @@ plug(plugin_name);
 
 ##### Example : use the devis-mongo-client plugin
 
-First, we will install the plugin : 
+First, we will install devis and the plugin : 
 
 ```bash
+$ npm install --save devis
 $ npm install --save devis-mongo-client
 ```
 After, we will call our plugin : 
