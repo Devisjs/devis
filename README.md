@@ -809,13 +809,20 @@ let devisMongoClient = require("devis")
         else {
 
             //call find function of the plugging by giving the collection and search conditions 
-            devisMongoClient.call({role:"mongodb",action:"find"},{collection:"foo", params:{"Acronym" : "L"}},(err,result)=>{
-                if(err) {
-                    console.log(err);
-                }else{
-                    console.log(result);
-                }
-            });     
-        }
+            devisMongoClient.call({
+                    role: "mongodb",
+                    action: "find"
+                }, {
+                    collection: "foo",
+                    params: {
+                        "Acronym": "L"
+                    }
+                }, (err, result) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        console.log(result);
+                    }
+            });
     });
 ```
