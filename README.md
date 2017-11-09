@@ -55,7 +55,7 @@ You will find in this documentation the principles of Devis framework and also, 
             * [Distant microservice](#distant-microservice )
             * [Example : use a microservice](#example--use-a-microservice )
         * [Fetch for a microservice](#fetch-for-a-microservice )
-        * [Use pluggings](#use-pluggings )
+        * [Use plugins](#use-plugins )
 
 
 
@@ -775,29 +775,29 @@ Suppose you want to view or retrieve the functionality of a microservice, you wi
     });
    ```
 
-#### Use pluggings
-To be able to use a plug in official or created by a third, we have to call the **plug** method , after installing the plugging, by giving as argument the name of the plugging.
+#### Use plugins
+To be able to use a plug in official or created by a third, we have to call the **plug** method , after installing the plugin, by giving as argument the name of the plugin.
 
 * Syntax :  
 
 ```javascript
-plug(plugging_name);
+plug(plugin_name);
 ```
 
-##### Example : use the devis-mongo-client plugging
+##### Example : use the devis-mongo-client plugin
 
-First, we will install the plugging : 
+First, we will install the plugin : 
 
 ```bash
 $ npm install --save devis-mongo-client
 ```
-After, we will call our plugging : 
+After, we will call our plugin : 
 
 ```javascript
 //Initialize a Devis instance
 let devisMongoClient = require("devis")
 
-//use the devis-mongo-client plugging
+//use the devis-mongo-client plugin
         .plug("devis-mongo-client")
 
         //connect to the database
@@ -808,7 +808,7 @@ let devisMongoClient = require("devis")
         if (err) console.log(err);
         else {
 
-            //call find function of the plugging by giving the collection and search conditions 
+            //call find function of the plugin by giving the collection and search conditions 
             devisMongoClient.call({
                     role: "mongodb",
                     action: "find"
