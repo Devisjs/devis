@@ -55,8 +55,7 @@ You will find in this documentation the principles of Devis framework and also, 
             * [Distant microservice](#distant-microservice )
             * [Example : use a microservice](#example--use-a-microservice )
         * [Fetch for a microservice](#fetch-for-a-microservice )
-
-
+        * [Use pluggings](#use-pluggings )
 
 
 
@@ -563,7 +562,7 @@ connect({
     ``` 
 
 ##### Use microservice functions 
-Now you are connected to a microservice, locally or remotely, and you want to use its functions you will use the ***act*** method. It takes 3 arguments:
+Now you are connected to a microservice, locally or remotely, and you want to use its functions you will use the ***call*** method. It takes 3 arguments:
 
   * `The pattern`: This is an object that usually takes two to three parameters, the first (when using a remote microservice) is the identifier of the microservice to use, the one added in the method ***connect***, the second argument represents the name of the microservice and the third the name of the function.
   * `Arguments`: This is an object in which you will pass the values of the arguments necessary to the processing of the function (remember the example of the calculator).
@@ -572,7 +571,7 @@ Now you are connected to a microservice, locally or remotely, and you want to us
 * Syntax :  
 
 ```javascript
-act(pattern, arguments, callback);
+call(pattern, arguments, callback);
 ```
 
 ##### Example : use a microservice
@@ -776,3 +775,47 @@ Suppose you want to view or retrieve the functionality of a microservice, you wi
     });
    ```
 
+#### Use pluggings
+Pour pouvoir utiliser un plugging officiel ou crée par un tiers, il suffit d'appeler la methode **plug**, apres avoir installer le plugging en donnant comme argument le nom du plugging.
+
+* Syntax :  
+
+```javascript
+plug(plugging-name);
+```
+
+##### Example : use the devis-mongo-client plugging
+
+First, we will install the plugging : 
+
+```bash
+$ npm install --save devis-mongo-client
+```
+After, we will call our plugging : 
+
+```javascript
+//Initialize a Devis instance
+let devisMongoClient = require("devis")
+
+//use the devis-mongo-client plugging
+        .plug("devis-mongo-client")
+
+        //connect to the database
+        .call({
+        role: "mongodb",
+        action: "connect"
+    }, { url: "mongodb://localhost:27017/foo" }, (err, db) => {
+        if (err) console.log(err);
+        else {
+            
+            //call find function of the plugging by giving the collection and search conditions 
+            devisMongoClient.call({role:"mongodb",action:"find"},{collection:"foo", params:{"Acronym" : "L"}},(err,result)=>{
+                if(err) {
+                    console.log(err);
+                }else{
+                    console.log(result);
+                }
+            });     
+        }
+    });
+```
