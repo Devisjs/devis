@@ -1,3 +1,4 @@
+/* Copyright (c) 2017 Devis, MIT License */
 "use strict";
 let devis = require("../devis");
 

@@ -224,7 +224,7 @@ let devisMicroservice = require("devis");
 ``` 
 
 ##### Add a function to the microservice
-After calling the module Devis, you must add functions to your microservice, by calling the method add that takes two arguments, the first are the pattern of the function and the second is the handler. 
+After calling the module Devis, you must add functions to your microservice, by calling the method **push** that takes two arguments, the first are the pattern of the function and the second is the handler. 
 
 The pattern is an object that usually takes two parameters, the first represents the name of the microservice and the second the name of the function.
 
@@ -233,7 +233,7 @@ The handler is a function, it is here where you will put the heart of the latter
 * Syntax : 
 
 ```javascript
-add(pattern, (arguments, doneFunction)=>{ 
+push(pattern, (arguments, doneFunction)=>{ 
     doneFunction(errors, result)
 }); 
 ```
@@ -375,7 +375,7 @@ Now we will see a complete example for creating and deploying a microservice loc
 let calculatorMicroservice = require("devis");
 
 // Add addition function to the calculator
-calculatorMicroservice.add({
+calculatorMicroservice.push({
     action: "calculator",
     cmd: "add"
 }, (args, done) => {
@@ -389,7 +389,7 @@ calculatorMicroservice.add({
 });
 
 // Add multiplication function to the calculator
-calculatorMicroservice.add({
+calculatorMicroservice.push({
     action: "calculator",
     cmd: "mult"
 }, (args, done) => {
@@ -403,7 +403,7 @@ calculatorMicroservice.add({
 });
 
 // Add substraction function to the calculator
-calculatorMicroservice.add({
+calculatorMicroservice.push({
     action: "calculator",
     cmd: "sub"
 }, (args, done) => {
@@ -417,7 +417,7 @@ calculatorMicroservice.add({
 });
 
 // Add division function to the calculator
-calculatorMicroservice.add({
+calculatorMicroservice.push({
     action: "calculator",
     cmd: "div"
 }, (args, done) => {
@@ -441,7 +441,7 @@ module.exports = calculatorMicroservice;
 let calculatorMicroservice = require("devis");
 
 // Add addition function to the calculator
-calculatorMicroservice.add({
+calculatorMicroservice.push({
     action: "calculator",
     cmd: "add"
 }, (args, done) => {
@@ -455,7 +455,7 @@ calculatorMicroservice.add({
 });
 
 // Add multiplication function to the calculator
-calculatorMicroservice.add({
+calculatorMicroservice.push({
     action: "calculator",
     cmd: "mult"
 }, (args, done) => {
@@ -469,7 +469,7 @@ calculatorMicroservice.add({
 });
 
 // Add substraction function to the calculator
-calculatorMicroservice.add({
+calculatorMicroservice.push({
     action: "calculator",
     cmd: "sub"
 }, (args, done) => {
@@ -483,7 +483,7 @@ calculatorMicroservice.add({
 });
 
 // Add division function to the calculator
-calculatorMicroservice.add({
+calculatorMicroservice.push({
     action: "calculator",
     cmd: "div"
 }, (args, done) => {
@@ -521,14 +521,14 @@ use("/devisMicroservicePath");
 ```
 
 ##### Distant microservice 
-Connecting to a remote microservice is done using the ***client*** method, which, like the ***listen*** method, takes as argument an object whose parameters change according to the protocol used, but you must necessarily add inside this object a unique identifier for each connection.
+Connecting to a remote microservice is done using the ***connect*** method, which, like the ***listen*** method, takes as argument an object whose parameters change according to the protocol used, but you must necessarily add inside this object a unique identifier for each connection.
 
-Sometimes, you will need to do a processing only after successful connectivity with the server, and in this case you will simply use the callback function of the method ***client***.
+Sometimes, you will need to do a processing only after successful connectivity with the server, and in this case you will simply use the callback function of the method ***connect***.
 
 * Syntax : 
 
 ```javascript
-client({
+connect({
     id: unique_id,
     [parameters]
 }, callback);
@@ -537,7 +537,7 @@ client({
     * TCP :
     
     ```javascript
-    client({
+    connect({
            id: 1,
            host: "127.0.0.1"
            port: 3030
@@ -548,7 +548,7 @@ client({
     * Unix Socket : 
     
     ```js
-    client({
+    connect({
         id: 2,
         path: "/tmp/mysoscket.sock"
     });
@@ -556,7 +556,7 @@ client({
     * named pipes : 
     
     ```javascript
-    client({
+    connect({
         id: 3,
         path: "\\\\\.\\pipe\\mynamedpipe"
     });
@@ -565,7 +565,7 @@ client({
 ##### Use microservice functions 
 Now you are connected to a microservice, locally or remotely, and you want to use its functions you will use the ***act*** method. It takes 3 arguments:
 
-  * `The pattern`: This is an object that usually takes two to three parameters, the first (when using a remote microservice) is the identifier of the microservice to use, the one added in the method ***client***, the second argument represents the name of the microservice and the third the name of the function.
+  * `The pattern`: This is an object that usually takes two to three parameters, the first (when using a remote microservice) is the identifier of the microservice to use, the one added in the method ***connect***, the second argument represents the name of the microservice and the third the name of the function.
   * `Arguments`: This is an object in which you will pass the values of the arguments necessary to the processing of the function (remember the example of the calculator).
   * `The Callback` : Do you remember the syntax of the ***add*** method? and in particular the return function? exactly, the <span style = "color: red"> doneFunction (errors, result) </span> this is our 3rd argument! which will allow us to handle the errors when using the function and to finally get the desired result.
   
@@ -588,7 +588,7 @@ let calculatorClient = require("devis");
 calculatorClient.use(__dirname + "/calculator");
 
 // Use the addition function
-calculatorClient.act({
+calculatorClient.call({
     action: "calculator",
     cmd: "add"
 }, {
@@ -603,7 +603,7 @@ calculatorClient.act({
 });
 
 // Use the multiplication function
-calculatorClient.act({
+calculatorClient.call({
     action: "calculator",
     cmd: "mult"
 }, {
@@ -618,7 +618,7 @@ calculatorClient.act({
 });
 
 // Use the substraction function
-calculatorClient.act({
+calculatorClient.call({
     action: "calculator",
     cmd: "sub"
 }, {
@@ -633,7 +633,7 @@ calculatorClient.act({
 });
 
 // Use the division function
-calculatorClient.act({
+calculatorClient.call({
     action: "calculator",
     cmd: "div"
 }, {
@@ -656,13 +656,13 @@ We will use in this example, the **Distantcalculator** remote microservice, usin
 let calculatorClient = require("devis");
 
 //Use the distant calculator microservice
-calculatorClient.client({
+calculatorClient.connect({
     id: 1,
     path: '/tmp/calculatorSocket'
 })
 
 // Use the addition function for the microservice 1 
-calculatorClient.act({
+calculatorClient.call({
     id: 1,
     action: "calculator",
     cmd: "add"
@@ -678,7 +678,7 @@ calculatorClient.act({
 });
 
 // Use the multiplication function for the microservice 1 
-calculatorClient.act({
+calculatorClient.call({
     id: 1,
     action: "calculator",
     cmd: "mult"
@@ -694,7 +694,7 @@ calculatorClient.act({
 });
 
 // Use the substraction function for the microservice 1 
-calculatorClient.act({
+calculatorClient.call({
     id: 1,
     action: "calculator",
     cmd: "sub"
@@ -710,7 +710,7 @@ calculatorClient.act({
 });
 
 // Use the division function for the microservice 1 
-calculatorClient.act({
+calculatorClient.call({
     id: 1,
     action: "calculator",
     cmd: "div"

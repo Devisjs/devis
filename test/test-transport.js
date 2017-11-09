@@ -51,7 +51,7 @@ describe("Devis Transport Class", function() {
 
 	describe("#listen", function() {
 		it("should create a server and send send server data to clients", function() {
-			devis.add({
+			devis.push({
 				action: "server",
 				cmd: "Test"
 			}, function(args, done) {
@@ -67,7 +67,7 @@ describe("Devis Transport Class", function() {
 	describe("#client Socket", function() {
 		it("should connect client to server", function() {
 
-			devisClient.client({
+			devisClient.connect({
 				host: "127.0.0.1",
 				port: 8181,
 				id: 0

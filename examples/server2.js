@@ -1,6 +1,7 @@
+/* Copyright (c) 2017 Devis, MIT License */
 "use strict";
 var devis = require("../devis");
-devis.add({
+devis.push({
 	action: "game",
 	cmd: "pause"
 }, function(args, done) {
@@ -8,7 +9,7 @@ devis.add({
 	done(null, args.name + " pause");
 });
 
-devis.add({
+devis.push({
 	action: "game",
 	cmd: "play"
 }, function(args, done) {

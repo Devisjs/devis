@@ -40,7 +40,7 @@ describe("Devis Core", function() {
 
 			Servercore = new Core(devisPatternServer);
 			Servercore.setName("server");
-			Servercore.add({
+			Servercore.push({
 				action: "foo",
 				cmd: "bar"
 			}, function(args, done) {
@@ -56,7 +56,7 @@ describe("Devis Core", function() {
 
 	describe("#client", function() {
 		it("should create an instance of transport (client) and connect to the server", function() {
-			core.client({
+			core.connect({
 				host: "127.0.0.1",
 				port: 3030,
 				id: 0
@@ -70,7 +70,7 @@ describe("Devis Core", function() {
 		});
 		it("should throw an exception if the id is not given", function() {
 			expect(function() {
-				core.client({
+				core.connect({
 					host: "127.0.0.1",
 					port: 3032
 				});
@@ -78,7 +78,7 @@ describe("Devis Core", function() {
 		});
 		it("should throw an exception if the id already exists", function() {
 			expect(function() {
-				core.client({
+				core.connect({
 					host: "127.0.0.1",
 					port: 3030,
 					id: 0
@@ -87,9 +87,9 @@ describe("Devis Core", function() {
 		});
 	});
 
-	describe("#add", function() {
+	describe("#put", function() {
 		it("should add a pattern to the microsevice", function() {
-			core.add({
+			core.push({
 				action: "game",
 				cmd: "play"
 			}, function(args, done) {
@@ -100,7 +100,7 @@ describe("Devis Core", function() {
 			expect(core.path.path).to.be.an("Array");
 		});
 		it("should add a pattern without needed arguments to the microsevice", function() {
-			core.add({
+			core.push({
 				action: "foo",
 				cmd: "pause"
 			}, function(args, done) {
@@ -109,7 +109,7 @@ describe("Devis Core", function() {
 		});
 		it("should throw an exception if the pattern already exists", function() {
 			expect(function() {
-				core.add({
+				core.push({
 					action: "game",
 					cmd: "play"
 				}, function(args, done) {
@@ -119,21 +119,21 @@ describe("Devis Core", function() {
 		});
 		it("should throw an exception if the pattern are not an object", function() {
 			expect(function() {
-				core.add("notAnObject", function(args, done) {
+				core.push("notAnObject", function(args, done) {
 					done(null, args.name + " is playing game now");
 				});
 			}).to.throw(Error, "pattern should be an object, not string");
 		});
 		it("should throw an exception if the pattern are null", function() {
 			expect(function() {
-				core.add(null, function(args, done) {
+				core.push(null, function(args, done) {
 					done(null, args.name + " is playing game now");
 				});
 			}).to.throw(Error, "pattern couldn't be null");
 		});
 		it("should throw an exception if the handle are not a function", function() {
 			expect(function() {
-				core.add({
+				core.push({
 					action: "foo",
 					cmd: "play"
 				}, "not-a-function");
@@ -141,9 +141,9 @@ describe("Devis Core", function() {
 		});
 	});
 
-	describe("#act", function() {
+	describe("#call", function() {
 		it("should successively detect that there is not arguments there", function() {
-			var coreAfterServer = core.act({
+			var coreAfterServer = core.call({
 				action: "foo",
 				cmd: "pause"
 			}, function(err, result) {
@@ -154,7 +154,7 @@ describe("Devis Core", function() {
 		});
 		it("should find the pattern on his own instance", function() {
 
-			var coreAfterServer = core.act({
+			var coreAfterServer = core.call({
 				action: "game",
 				cmd: "play"
 			}, {
@@ -167,7 +167,7 @@ describe("Devis Core", function() {
 		});
 		it("should find the pattern on local microservice", function() {
 			core.use("/../examples/server.js");
-			var coreAfterServer = core.act({
+			var coreAfterServer = core.call({
 				action: "gamer",
 				cmd: "pause"
 			}, {
@@ -180,7 +180,7 @@ describe("Devis Core", function() {
 		});
 		it("should throw an exception if the pattern doesn't exist", function() {
 			expect(function() {
-				core.act({
+				core.call({
 					action: "gamer",
 					cmd: "player"
 				}, {
@@ -193,7 +193,7 @@ describe("Devis Core", function() {
 			}).to.throw(Error, "No handle found");
 		});
 		it("should find the pattern on distant microservice", function() {
-			var coreAfterServer = core.act({
+			var coreAfterServer = core.call({
 				clientId: 0,
 				action: "foo",
 				cmd: "bar"
