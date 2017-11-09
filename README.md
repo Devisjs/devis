@@ -776,7 +776,7 @@ Suppose you want to view or retrieve the functionality of a microservice, you wi
    ```
 
 #### Use pluggings
-Pour pouvoir utiliser un plugging officiel ou crée par un tiers, il suffit d'appeler la methode **plug**, apres avoir installer le plugging en donnant comme argument le nom du plugging.
+To be able to use a plug in official or created by a third, we have to call the **plug** method , after installing the plugging, by giving as argument the name of the plugging.
 
 * Syntax :  
 
@@ -807,7 +807,7 @@ let devisMongoClient = require("devis")
     }, { url: "mongodb://localhost:27017/foo" }, (err, db) => {
         if (err) console.log(err);
         else {
-            
+
             //call find function of the plugging by giving the collection and search conditions 
             devisMongoClient.call({role:"mongodb",action:"find"},{collection:"foo", params:{"Acronym" : "L"}},(err,result)=>{
                 if(err) {
