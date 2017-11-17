@@ -800,30 +800,38 @@ let devisMongoClient = require("devis")
 
 //use the devis-mongo-client plugin
         .plug("devis-mongo-client")
-
+let promise = new Promise((resolve, reject) => {
         //connect to the database
-        .call({
+    devis.call({
         role: "mongodb",
         action: "connect"
-    }, { url: "mongodb://localhost:27017/foo" }, (err, db) => {
-        if (err) console.log(err);
+    }, {
+        url: "mongodb://localhost:27017/prisma"
+    }, (err, db) => {
+        if (err) reject(err);
         else {
-
-            //call find function of the plugin by giving the collection and search conditions 
-            devisMongoClient.call({
-                    role: "mongodb",
-                    action: "find"
-                }, {
-                    collection: "foo",
-                    params: {
-                        "Acronym": "L"
-                    }
-                }, (err, result) => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log(result);
-                    }
-            });
+            resolve("success");
+        }
     });
+
+});
+promise.then((res) => {
+
+	//call find function of the plugin by giving the collection and search conditions 
+	devisMongoClient.call({
+		role: "mongodb",
+		action: "find"
+	    }, {
+		collection: "foo",
+		params: {
+		    "Acronym": "L"
+		}
+	    }, (err, result) => {
+		if (err) {
+		    console.log(err);
+		} else {
+		    console.log(result);
+		}
+	}
+});
 ```
