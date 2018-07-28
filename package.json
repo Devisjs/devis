@@ -6,7 +6,9 @@
   "scripts": {
     "test": "mocha ./test",
     "coverage": "istanbul cover _mocha ./test -x test-*.js",
-    "showCoverage": "open coverage/lcov-report/index.html"
+    "showCoverage": "open coverage/lcov-report/index.html",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "author": "ismail reida",
   "keywords": [
@@ -36,12 +38,14 @@
     "colors": "^1.1.2",
     "devisPattern": "^1.2.1",
     "jsonet": "^1.0.0",
-    "jsonpack": "^1.1.5"
+    "jsonpack": "^1.1.5",
+    "snyk": "^1.88.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "node-cmd": "^2.0.0"
-  }
+  },
+  "snyk": true
 }
