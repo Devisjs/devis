@@ -39,7 +39,7 @@
     "devisPattern": "^1.2.1",
     "jsonet": "^1.0.0",
     "jsonpack": "^1.1.5",
-    "snyk": "^1.192.3"
+    "snyk": "^1.192.5"
   },
   "devDependencies": {
     "chai": "^3.5.0",
