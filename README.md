@@ -66,7 +66,7 @@ node client.js   # in another terminal
 
 * A call matches a handler only when its pattern is **identical**: same keys, same values, same key order. `{ role: "math" }` does not match `{ role: "math", cmd: "sum" }`.
 * Registering the same pattern twice throws `This pattern already exists`.
-* Calling a pattern nobody registered throws `No handle found`.
+* Calling a pattern nobody registered throws `No handle found`. On a remote service, the callback receives `"No handle found"` as `err` and the service keeps running.
 * `require("devis")` returns one instance per process, so every file of a service shares the same patterns.
 
 ## Recipes
@@ -185,6 +185,7 @@ Every method returns the instance, so calls can be chained.
 * devisPattern 2 is plain JavaScript, so CMake and a C++ toolchain are no longer needed to install Devis.
 * Each microservice now has its own pattern table. In 2.x, two matchers in the same process could resolve each other's patterns to the wrong handler.
 * An error returned by a remote handler now reaches the caller's callback. In 2.x and 3.0.0 the client treated it as a missing pattern and threw `No handle found`.
+* Calling an unknown pattern on a remote service now answers `"No handle found"` to the caller. Up to 3.0.1 it crashed the remote service.
 
 ## License
 
