@@ -273,6 +273,17 @@ describe("Devis Core", function() {
 				finish();
 			});
 		});
+		// 3.0.1 and earlier threw inside the server's socket handler, killing the remote service.
+		it("should answer an unknown remote pattern with an error and keep serving", function(finish) {
+			core.call({ clientId: 0, action: "foo", cmd: "missing" }, {}, function(err) {
+				expect(err).to.equal("No handle found");
+				core.call({ clientId: 0, action: "foo", cmd: "bar" }, { test: "Client0" }, function(err, result) {
+					expect(err).to.be.null;
+					expect(result).to.contain("connected to this distant microservice");
+					finish();
+				});
+			});
+		});
 	});
 
 	describe("#close", function() {
