@@ -1,14 +1,10 @@
 {
   "name": "devis",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "A microservices framework for Node.js",
   "main": "devis.js",
   "scripts": {
-    "test": "mocha ./test",
-    "coverage": "istanbul cover _mocha ./test -x test-*.js",
-    "showCoverage": "open coverage/lcov-report/index.html",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "test": "mocha --exit ./test"
   },
   "author": "ismail reida",
   "keywords": [
@@ -30,22 +26,24 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Devisjs/devis.git"
+    "url": "git+https://github.com/Devisjs/devis.git"
   },
   "license": "MIT",
   "dependencies": {
     "callsite": "^1.0.0",
-    "colors": "^1.3.3",
-    "devisPattern": "^1.2.1",
+    "devisPattern": "^2.0.0",
     "jsonet": "^1.0.0",
-    "jsonpack": "^1.1.5",
-    "snyk": "^1.192.3"
+    "jsonpack": "^1.1.5"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
-    "node-cmd": "^2.0.0"
+    "chai": "^4.5.0",
+    "mocha": "^12.0.3"
   },
-  "snyk": true
+  "engines": {
+    "node": ">=22"
+  },
+  "files": [
+    "devis.js",
+    "lib/"
+  ]
 }

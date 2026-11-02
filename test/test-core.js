@@ -4,7 +4,8 @@ const chai = require("chai"),
 	expect = chai.expect,
 	Core = require("../lib/core.js"),
 	Transport = require("../lib/transport"),
-	devisP = require("devisPattern");
+	devisP = require("devisPattern"),
+	fs = require("fs");
 let core, Servercore;
 /* global it, describe */
 /*eslint no-console: ["error", { allow: ["warn", "error","log"] }]*/
@@ -246,6 +247,18 @@ describe("Devis Core", function() {
 		//
 		//
 		// });
+		// log() used callback-less fs calls, which throw since Node.js 10.
+		it("should write the local patterns to <name>-log.txt", function() {
+			let logCore = new Core(new devisP());
+			logCore.setName("logtest");
+			logCore.push({ action: "log", cmd: "test" }, function(args, done) {
+				done(null, "ok");
+			});
+			logCore.log();
+			let content = fs.readFileSync("logtest-log.txt", "utf8");
+			fs.unlinkSync("logtest-log.txt");
+			expect(content).to.equal("local [{\"action\":\"log\",\"cmd\":\"test\"}]\n");
+		});
 	});
 
 	describe("#close", function() {

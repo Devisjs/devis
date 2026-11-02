@@ -15,10 +15,10 @@ if (process.argv[2] === "connect") {
 
 	res["id"] = 1;
 
-	devis.client(res);
+	devis.connect(res);
 
 
-} else {devis.use(process.argv[2]);//full path!}
+} else {devis.use(process.argv[2]);} //full path!
 
 devis.setName("devis");
 devis.log();

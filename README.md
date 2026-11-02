@@ -7,8 +7,7 @@
   <a href="https://www.npmjs.com/package/devis"><img src="https://img.shields.io/npm/dt/devis.svg" alt="Downloads"></a>
   <a href="https://www.npmjs.com/package/devis"><img src="https://img.shields.io/npm/v/devis.svg" alt="Version"></a>
   <a href="https://www.npmjs.com/package/devis"><img src="https://img.shields.io/npm/l/devis.svg" alt="License"></a>
-<a href="http://travis-ci.org/Devisjs/devis"><img src="https://travis-ci.org/Devisjs/devis.svg?branch=master" alt=""></a>
-  <a href="https://www.bithound.io/github/Devisjs/devis"><img src="https://www.bithound.io/github/Devisjs/devis/badges/score.svg" alt="bitHound Overall Score"></a>
+  <a href="https://github.com/Devisjs/devis/actions/workflows/ci.yml"><img src="https://github.com/Devisjs/devis/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <br>
 </p>
  Devis is a framework capable of creating and managing microservices under node.js.
@@ -27,7 +26,6 @@ You will find in this documentation the principles of Devis framework and also, 
     * [Definition](#definition )
     * [Why using pattern matching in microservices?](#why-using-pattern-matching-in-microservices)
     * [devisPatter](#devispattern )
-        * [C++ Addons](#c-addons )
         * [devisPattern](#devispattern )
 * [Transport independence using protocoles for connectivity](#transport-independence-using-protocoles-for-connectivity )
     * [Message-oriented middlewar](#message-oriented-middleware )
@@ -37,11 +35,7 @@ You will find in this documentation the principles of Devis framework and also, 
     * [named pipes](#named-pipes )
 * [Devis Framework](#devis-framework )
     * [Installation](#installation )
-        * [prerequisites](#prerequisites )
-            * [On Microsoft Windows](#on-microsoft-windows )
-            * [On Unix/GNU-Linux](#on-unixgnu-linux )
-            * [On MacOS](#on-macos )
-        * [Installation of Devis](#installation-of-devis )
+        * [Upgrading from 2.x](#upgrading-from-2x )
     * [Microservice architecture](#microservice-architecture )
         * [Create a microservice](#create-a-microservice )
             * [Add a function to the microservice](#add-a-function-to-the-microservice )
@@ -148,11 +142,7 @@ Sequence patterns are often described using regular expressions and matched usin
 Why not use pattern-matching? If a message is something you are interested in as a component, you can tell by looking at. Have a pattern (some template of JSON structure) that you can match the message against. It turns out that is it sufficient to be really really simple - just match against the literal values of the top level properties. That is more than enough to build entire systems with. And it gives you a component model that makes composition easy.
 
 ### devisPattern
-#### C++ Addons 
-Node.js Addons are dynamically-linked shared objects, written in C++, that can be loaded into Node.js using the require() function, and used just as if they were an ordinary Node.js module. They are used primarily to provide an interface between JavaScript running in Node.js and C/C++ libraries.
-
-#### devisPattern
-DevisPattern is a very fast Matcher Pattern written in C++ that uses the JavaScript javascript v8 engine applied on properties of JavaScript objects and  basedon the "query-by-example" method for sets of properties.
+DevisPattern is the matcher used by Devis to route a call to its handler. It matches the literal values of a pattern's properties: a call resolves only when its pattern is identical to a registered one.
 
 It can be used separately or integrated as a kernel in a framework like Devis.
 
@@ -177,38 +167,16 @@ A named pipe (also known as a FIFO for its behavior) is an extension to the trad
 After defining the microservices architecture and defining the pillars of Devis framework namely, its use of a matcher pattern and the fact that it supports the most used protocols we will move to the technical part of Devis.
 
 ### Installation
-#### prerequisites
-Before you can use Devis you have to be able to install it on your machine. We must not forget that Devis is based on DevisPattern, which is a c++ addon, so you need to install tools according to your operating system.
-
-##### On Microsoft Windows
-* <a href="https://www.visualstudio.com">Visual studio</a> : 
-    * A recent version of visual studio (you have to add visual c++ during the installation), the free Community version works well.
-* <a href="https://cmake.org/download/">Cmake </a>:
-    * *.msi* version for windows: You must check the addition of the path for all users.
-* restart the computer 
-
-##### On Unix/GNU-Linux
-* <a href="https://clang.llvm.org">Clang</a> or <a href="https://gcc.gnu.org">GCC</a>
-* <a href="https://ninja-build.org">Ninja </a> or <a href="https://cmake.org/download/">Cmake</a>
-
-##### On MacOS
-* Xcode : 
-    * Install or update to the last version of xcode disponible dans l'app store.
-    * Install the xcode command line tools by typing the following command string : 
-    
-```bash
-    $ xcode-select --install
-```
-* <a href="https://brew.sh">homebrew</a>  
-* <a href="https://clang.llvm.org">Clang</a> or <a href="https://gcc.gnu.org">GCC</a> via homebrew
-* <a href="https://ninja-build.org">Ninja </a> or <a href="https://cmake.org/download/">Cmake</a> via homebrew
-
-#### Installation of Devis 
-congratulations! now after configuring your machine you can install Devis by running the following command:
+Devis requires Node.js 22 or later. No compiler or native build tool is needed.
 
 ```bash
     $ npm install --save devis
 ```
+
+#### Upgrading from 2.x
+* Node.js 22 or later is required.
+* devisPattern 2 is plain JavaScript, so CMake and a C++ toolchain are no longer needed to install Devis.
+* Each microservice now has its own pattern table. In 2.x, two matchers in the same process could resolve each other's patterns to the wrong handler.
 
 ### Microservice architecture
 In this part I will show you how to create, configure your microservices and also connect to microservices
