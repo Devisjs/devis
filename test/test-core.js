@@ -261,6 +261,20 @@ describe("Devis Core", function() {
 		});
 	});
 
+	describe("#call remote error", function() {
+		// 2.x treated a remote error without result as a missing pattern and threw on the client.
+		it("should pass the error of a distant handler to the callback", function(finish) {
+			Servercore.push({ action: "foo", cmd: "fail" }, function(args, done) {
+				done("division by zero");
+			});
+			core.call({ clientId: 0, action: "foo", cmd: "fail" }, {}, function(err, result) {
+				expect(err).to.equal("division by zero");
+				expect(result).to.be.undefined;
+				finish();
+			});
+		});
+	});
+
 	describe("#close", function() {
 		it("should close the connection between the given client and the server", function() {
 			core.close(0);
