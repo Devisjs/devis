@@ -30,8 +30,8 @@ describe("Devis Transport Class", function() {
 		});
 		it("should have an empty data, options and server", function() {
 			expect(transport.data).to.be.empty;
-			expect(transport.opt).to.be.empty;
-			expect(transport.server).to.be.empty;
+			expect(transport.opt).to.be.undefined;
+			expect(transport.server).to.be.undefined;
 		});
 	});
 
