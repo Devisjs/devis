@@ -9,7 +9,7 @@
   <a href="https://github.com/Devisjs/devis/actions/workflows/ci.yml"><img src="https://github.com/Devisjs/devis/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
 </p>
 
-A microservice registers handlers under **patterns** (plain objects). Callers send a pattern and arguments; Devis routes the call to the matching handler, in the same process or over TCP, a Unix socket or a named pipe. Moving a service out of process does not change the calling code beyond adding `clientId`.
+A microservice registers handlers under **patterns** (plain objects). Callers send a pattern and arguments; Devis routes the call to the matching handler, in the same process or over TCP, a Unix socket or a named pipe. Moving a service out of process does not change the calling code: Devis sends the call to the service that announced the pattern.
 
 ```bash
 npm install devis
@@ -42,10 +42,10 @@ devis.listen({ host: "127.0.0.1", port: 3030 });
 const devis = require("devis");
 
 devis.setName("client").connect({ id: "math", host: "127.0.0.1", port: 3030 }, async () => {
-    console.log(await devis.call({ clientId: "math", role: "math", cmd: "sum" }, { left: 1, right: 2 })); // 3
+    console.log(await devis.call({ role: "math", cmd: "sum" }, { left: 1, right: 2 })); // 3
 
     try {
-        await devis.call({ clientId: "math", role: "math", cmd: "divide" }, { left: 1, right: 0 });
+        await devis.call({ role: "math", cmd: "divide" }, { left: 1, right: 0 });
     } catch (err) {
         console.log(err.message); // division by zero
     }
@@ -58,7 +58,7 @@ node math.js
 node client.js   # in another terminal
 ```
 
-`clientId` is the `id` given to `connect`: it tells Devis which connection to send the call to.
+On connection, `math.js` announces its patterns, so the client sends each call to it. See [Routing and load balancing](#routing-and-load-balancing).
 
 ## Handlers
 
@@ -88,7 +88,8 @@ Calls on the same connection run in parallel: a slow handler does not delay the 
 
 ## How matching works
 
-* A call matches a handler when its pattern has the **same keys and values**. Key order does not matter, but `{ role: "math" }` does not match `{ role: "math", cmd: "sum" }`.
+* A handler matches a call when **all the keys of its pattern** appear in the call with the same values. Key order does not matter, and the call may carry more keys: `{ role: "math", cmd: "sum", version: 2 }` reaches the `{ role: "math", cmd: "sum" }` handler, but `{ role: "math" }` does not.
+* When several handlers match, the one with the most keys wins, so a `{ role: "math" }` fallback never shadows `{ role: "math", cmd: "sum" }`. On a tie, the first registered wins.
 * Registering the same pattern twice throws `This pattern already exists`.
 * Calling a pattern nobody registered fails with `No handle found`: the Promise rejects, or the call throws when a callback is given. On a remote service, the error is sent back to the caller and the service keeps running.
 * `require("devis")` returns one instance per process, so every file of a service shares the same patterns.
@@ -100,12 +101,62 @@ A remote call fails instead of waiting forever:
 | Error | When |
 | --- | --- |
 | `request timed out` | No answer within the connection `timeout` (30 s by default, `0` disables it). |
-| `connection closed` | The connection dropped while the call was waiting. The next call reconnects. |
+| `connection closed` | The connection dropped while the call was waiting. |
 | `No transport found` | No connection was opened with this `clientId`. |
 
 ```javascript
 devis.connect({ id: "payments", host: "payments", port: 3030, timeout: 2000 });
 ```
+
+A dropped connection is reopened by itself, after 1 s, then 2 s, 4 s and up to 30 s between attempts, so services and clients can start in any order and a restarted service gets traffic back. Pass `reconnect: false` to `connect` to turn it off.
+
+## Routing and load balancing
+
+When a client connects, the service sends it the list of its patterns, and sends it again when a pattern is pushed later. A call without `clientId` goes to the service whose pattern matches best:
+
+```javascript
+devis.connect({ id: "users", host: "users", port: 3030 });
+devis.connect({ id: "orders", host: "orders", port: 3030 });
+
+await devis.call({ role: "users", cmd: "get" }, { id: 1 });     // sent to users
+await devis.call({ role: "orders", cmd: "list" }, { user: 1 }); // sent to orders
+```
+
+* Connect several instances of a service and calls go to each in turn, skipping disconnected ones:
+
+  ```javascript
+  devis.connect({ id: "math-1", host: "10.0.0.1", port: 3030 });
+  devis.connect({ id: "math-2", host: "10.0.0.2", port: 3030 });
+  ```
+* A local handler wins over a remote one with the same number of keys.
+* A call made right after `connect` waits for the announcements instead of failing.
+* `clientId` still sends the call to one connection, the `id` given to `connect`.
+
+Devis does not find addresses: use the DNS names of Docker Compose or Kubernetes services for `host`.
+
+## Tracing with OpenTelemetry
+
+Install `@opentelemetry/api` next to Devis, and register an OpenTelemetry SDK as usual. Every remote call then records a client span on the caller and a server span on the service, named after the pattern (`cmd:sum,role:math`), with `rpc.system`, `rpc.method`, `server.address`, `server.port` and `devis.service` attributes. The trace context travels with the call, so a request crossing several services reads as one trace, and calls made inside a handler join it.
+
+```bash
+npm install @opentelemetry/api @opentelemetry/sdk-node @opentelemetry/exporter-trace-otlp-proto
+```
+
+```javascript
+// tracing.js, loaded first: node --require ./tracing.js math.js
+const { NodeSDK } = require("@opentelemetry/sdk-node");
+const { OTLPTraceExporter } = require("@opentelemetry/exporter-trace-otlp-proto");
+
+const sdk = new NodeSDK({ serviceName: "math", traceExporter: new OTLPTraceExporter() });
+sdk.start();
+// Flush pending spans when the process ends.
+process.on("beforeExit", () => sdk.shutdown());
+process.on("SIGTERM", () => sdk.shutdown().finally(() => process.exit(0)));
+```
+
+`OTEL_EXPORTER_OTLP_ENDPOINT` sets the collector address (`http://localhost:4318` by default).
+
+Without `@opentelemetry/api`, Devis records nothing and needs no configuration. Services older than 4.1 ignore the trace context.
 
 ## Recipes
 
@@ -219,9 +270,9 @@ const sum = await devis.call<number>({ role: "math", cmd: "sum" }, { left: 1, ri
 | Method | Description |
 | --- | --- |
 | `push(pattern, handler)` | Registers `handler` for `pattern`. The handler returns its result or calls `done(err, result)`. |
-| `call(pattern, [args], [callback])` | Calls the handler matching `pattern` with `args` (default `{}`). Returns a Promise without `callback`. Add `clientId` to the pattern to call a remote service. |
+| `call(pattern, [args], [callback])` | Calls the handler matching `pattern` with `args` (default `{}`), locally or on the connected service that announced it. Returns a Promise without `callback`. Add `clientId` to the pattern to pick a connection. |
 | `listen(options, [callback])` | Exposes the registered patterns. `options` are `net` options: `{ host, port }` or `{ path }`. |
-| `connect(options, [callback])` | Connects to a remote service. `options.id` is required and unique; it is the `clientId` used by `call`. `options.timeout` is in milliseconds. |
+| `connect(options, [callback])` | Connects to a remote service. `options.id` is required and unique; it is the `clientId` used by `call`. `options.timeout` is in milliseconds; `options.reconnect: false` disables reconnection. |
 | `close([id])`, `close([callback])` | Closes the connection `id`, or every connection and server. |
 | `use(path)` | Loads the patterns of a module exporting a Devis instance, relative to the calling file. |
 | `plug(name)` | Loads the patterns of an installed plugin. |
@@ -230,6 +281,14 @@ const sum = await devis.call<number>({ role: "math", cmd: "sum" }, { left: 1, ri
 | `log()` | Writes the local patterns to `<name>-log.txt`. |
 
 Every method except a callback-less `call` returns the instance, so calls can be chained.
+
+## Upgrading from 4.0
+
+* Patterns match partially: a call carrying extra keys now reaches the handler instead of failing with `No handle found`. Calls that matched in 4.0 match the same handler.
+* A call without `clientId` that no local handler matches goes to a connected service announcing the pattern, instead of failing with `No handle found`.
+* Connections reconnect by themselves after a drop. Pass `reconnect: false` to keep the 4.0 behaviour, where only the next call reconnected.
+* Remote calls are traced when `@opentelemetry/api` is installed.
+* Requires devisPattern 2.1, installed with Devis.
 
 ## Upgrading from 3.x
 
