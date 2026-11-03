@@ -15,37 +15,19 @@ describe("Devis Transport Class", function() {
 		it("should be an instance of EventEmitter", function() {
 			expect(transport).to.be.an.instanceof(EventEmitter);
 		});
-		it("shouldn't send any data", function() {
-			expect(transport.send).to.be.false;
-		});
-		it("should create a socket object", function() {
-			expect(transport.socket).to.be.an("object");
+		it("should not have a socket before connecting", function() {
+			expect(transport.socket).to.be.undefined;
 		});
 		it("should be disconnected", function() {
 			expect(transport.state).to.equal("disconnected");
 		});
-		it("should have an array for callbacks", function() {
-			expect(transport.callback).to.be.an("array");
-			expect(transport.callback).to.have.lengthOf(0);
+		it("should have no pending request", function() {
+			expect(transport.pending.size).to.equal(0);
 		});
 		it("should have an empty data, options and server", function() {
 			expect(transport.data).to.be.empty;
 			expect(transport.opt).to.be.undefined;
 			expect(transport.server).to.be.undefined;
-		});
-	});
-
-	describe("#getCallback", function() {
-		it("should take once the result from the emitter given as argument", function() {
-
-			transport.getCallback(1, "dataServer", (err, result, id) => {
-				console.log(result);
-			});
-			transport.emit(1 + "" + "dataServer", {
-				err: null,
-				data: "Data sent successfully",
-				id: 1
-			});
 		});
 	});
 
@@ -78,52 +60,38 @@ describe("Devis Transport Class", function() {
 		//     cmd: "Test"
 		// });
 	});
-	describe("#sendMessage", function() {
-		it("should send arguments to server", function() {
+	describe("#request", function() {
+		it("should send arguments to server and route the answer by ident", function(finish) {
 			let args = {
-				name: "Client0"
+				name: "Client0",
+				ident: ++devisClient.ident,
+				devisInstanceName: devisClient.name
 			};
-			args.ident = ++devisClient.ident;
-			args.devisInstanceName = devisClient.name;
-			devisClient.clients[0].sendMessage({
+			devisClient.clients[0].request({
 				action: "server",
-				cmd: "Test",
-				clientId: 0
-			}, args);
-		});
-		it("should wait to get data from a past send ", function() {
-			let args = {
-				name: "Client0"
-			};
-			args.ident = ++devisClient.ident;
-			args.devisInstanceName = devisClient.name;
-			devisClient.clients[0].sendMessage({
-				action: "server",
-				cmd: "Test",
-				clientId: 0
-			}, args);
-			args.ident = ++devisClient.ident;
-			args.devisInstanceName = devisClient.name;
-			devisClient.clients[0].sendMessage({
-				action: "server",
-				cmd: "Test",
-				clientId: 0
-			}, args);
+				cmd: "Test"
+			}, args, (err, result) => {
+				expect(err).to.be.null;
+				expect(result).to.equal("test from client Client0");
+				finish();
+			});
 		});
 	});
-	describe("#sendMessage and #Close", function() {
-		it("should reconnect if the connection has been closed and send arguments to server", function() {
+	describe("#request and #close", function() {
+		it("should reconnect if the connection has been closed and send arguments to server", function(finish) {
 			devisClient.clients[0].close();
 			let args = {
-				name: "Client0"
+				name: "Client0",
+				ident: ++devisClient.ident,
+				devisInstanceName: devisClient.name
 			};
-			args.ident = ++devisClient.ident;
-			args.devisInstanceName = devisClient.name;
-			devisClient.clients[0].sendMessage({
+			devisClient.clients[0].request({
 				action: "server",
-				cmd: "Test",
-				clientId: 0
-			}, args);
+				cmd: "Test"
+			}, args, (err, result) => {
+				expect(result).to.equal("test from client Client0");
+				finish();
+			});
 		});
 	});
 
