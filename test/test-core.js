@@ -63,7 +63,7 @@ describe("Devis Core", function() {
 				id: 0
 			});
 			expect(core.clients[0]).to.be.an.instanceof(Transport);
-			expect(core.clients[0].socket["_socket"]["connecting"]).to.equal(true);
+			expect(core.clients[0].socket.socket.connecting).to.equal(true);
 			expect(core.clients[0].state).to.equal("connected");
 		});
 		it("should increment the number of clients", function() {
@@ -221,15 +221,6 @@ describe("Devis Core", function() {
 			expect(coreAfterServer).to.equal(core);
 		});
 	});
-	//only for wakanda server with node.js support!!
-	describe("#usePath", function() {
-		it("should throw an exception if the pattern doesn't exist", function() {
-
-			core.usePath("/../examples/server.js");
-
-		});
-	});
-
 	describe("#log", function() {
 		// it("should create a log file with the name of microservice which contains a description of different paths ", function() {
 		//     var cmd1 = 'node examples/server2';
@@ -289,7 +280,7 @@ describe("Devis Core", function() {
 	describe("#close", function() {
 		it("should close the connection between the given client and the server", function() {
 			core.close(0);
-			expect(core.clients[0].socket["_socket"]["connecting"]).to.equal(false);
+			expect(core.clients[0].socket.socket.connecting).to.equal(false);
 			expect(core.clients[0].state).to.equal("disconnected");
 		});
 	});
