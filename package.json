@@ -1,6 +1,6 @@
 {
   "name": "devis",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "A microservices framework for Node.js",
   "main": "devis.js",
   "scripts": {
@@ -18,7 +18,9 @@
     "service-mesh",
     "nodejs",
     "typescript",
-    "async"
+    "async",
+    "opentelemetry",
+    "load-balancing"
   ],
   "repository": {
     "type": "git",
@@ -27,10 +29,14 @@
   "license": "MIT",
   "dependencies": {
     "callsite": "^1.0.0",
-    "devisPattern": "^2.0.0",
+    "devisPattern": "^2.1.0",
     "jsonpack": "^1.1.5"
   },
   "devDependencies": {
+    "@opentelemetry/api": "~1.9.0",
+    "@opentelemetry/context-async-hooks": "^2.12.0",
+    "@opentelemetry/core": "^2.12.0",
+    "@opentelemetry/sdk-trace-base": "^2.12.0",
     "chai": "^4.5.0",
     "mocha": "^12.0.3",
     "typescript": "^7.0.2"
@@ -43,5 +49,13 @@
     "devis.d.ts",
     "lib/"
   ],
-  "types": "devis.d.ts"
+  "types": "devis.d.ts",
+  "peerDependencies": {
+    "@opentelemetry/api": "^1.9.0"
+  },
+  "peerDependenciesMeta": {
+    "@opentelemetry/api": {
+      "optional": true
+    }
+  }
 }

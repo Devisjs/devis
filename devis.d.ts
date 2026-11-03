@@ -22,6 +22,8 @@ declare namespace devis {
 		id: string | number;
 		/** Milliseconds before a pending call fails with "request timed out"; 0 disables it. Default 30000. */
 		timeout?: number;
+		/** Reconnect after a drop, waiting 1 s then up to 30 s between attempts. Default true. */
+		reconnect?: boolean;
 	}
 
 	interface Devis {
